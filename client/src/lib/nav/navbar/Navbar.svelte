@@ -6,7 +6,7 @@
   export const links = [];
 </script>
 
-<nav class="flex-nowrap items-center justify-center bg-transparent prose prose-invert min-w-full max-w-screen my-0 p-3">
+<nav class="bg-transparent prose prose-invert min-w-full max-w-screen my-0 p-3" id="navbar">
   <NavLogo logo={favicon}>
     {name}
   </NavLogo>
@@ -20,7 +20,11 @@
 
 <style>
   nav {
+    align-items: center;
     display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
     max-width: 100vw;
     min-width: 100%;
     position: sticky top;

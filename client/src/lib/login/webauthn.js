@@ -17,3 +17,4 @@ const credential = await navigator.credentials.get({
   // Specify 'conditional' to activate conditional UI
   mediation: 'conditional'
 });
+

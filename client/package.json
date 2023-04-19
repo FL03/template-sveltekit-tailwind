@@ -8,6 +8,7 @@
 	"devDependencies": {
 		"@bytemd/plugin-gfm": "latest",
 		"@fontsource/fira-mono": "latest",
+		"@googlemaps/google-maps-services-js": "latest",
 		"@neoconfetti/svelte": "latest",
 		"@sveltejs/adapter-node": "next",
 		"@sveltejs/adapter-vercel": "next",
@@ -15,11 +16,14 @@
 		"@sveltejs/package": "next",
 		"@tailwindcss/forms": "latest",
 		"@tailwindcss/typography": "latest",
+		"@types/google.maps": "latest",
+		"@types/google.visualization": "latest",
 		"autoprefixer": "latest",
 		"svelte": "latest",
 		"svelte-check": "latest",
 		"svelte-preprocess": "latest",
 		"tailwindcss": "latest",
+		"typescript": "latest",
 		"vite": "beta"
 	},
 	"name": "@app/client",

@@ -17,6 +17,13 @@ body {
 	padding: 0;
 }
 
+*, *::before, *::after {
+  	box-sizing: inherit;
+}
+
+html {
+	box-sizing: border-box;
+}
 .banner {
 	align-items: center;
 	display: flex;
