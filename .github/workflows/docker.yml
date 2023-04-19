@@ -2,26 +2,32 @@ name: Docker
 
 on:
   pull_request:
-    branches: [ "main", "master", "prod*" ]
-    tags: [ "v*.*.*" ]
+    branches: [ main, master ]
   push:
-    branches: [ "main", "master", "prod*" ]
-    tags: [ "v*.*.*" ]
+    branches-ignore: [ "beta*", "dev*", "next*" ]
+    tags: [ "nightly*",  "v*.*.*" ]
+  release:
+      types: [created]
   schedule:
-    - cron: "30 9 * * *"
+    - cron: "30 9 * * *" # 9:30am UTC
   workflow_dispatch:
 
 env:
   IMAGE_TAG: latest
+  TARGET_DIR: client
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      IMAGE_NAME: ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}
     steps:
       - uses: actions/checkout@v3
       - name: Build the Docker image
-        run: docker buildx build --tag ${{ secrets.DOCKERHUB_USERNAME }}/pzzld-eth-app client
+        run: docker buildx build --tag ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }} ${{ env.TARGET_DIR}}
   publish:
+    env:
+      IMAGE_NAME: ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}
     needs: build
     runs-on: ubuntu-latest
     steps:
@@ -29,10 +35,10 @@ jobs:
     - name: Publish to Registry
       uses: elgohr/Publish-Docker-Github-Action@v5
       with:
-        dockerfile: client/Dockerfile
-        name: ${{ secrets.DOCKERHUB_USERNAME }}/pzzld-eth-app
+        dockerfile: ${{ env.TARGET_DIR}}/Dockerfile
+        name: ${{ env.IMAGE_NAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
         snapshot: true
-        tags: next
+        tags: latest
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         

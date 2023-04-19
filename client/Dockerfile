@@ -4,7 +4,7 @@ RUN apt-get update -y && apt-get upgrade -y
 
 FROM base as langspace
 
-RUN npm install -g ganache-cli hardhat truffle
+# RUN npm install -g ganache-cli hardhat truffle
 
 FROM langspace as builder
 
