@@ -1,11 +1,11 @@
-# template-sveltekit-tailwindcss
+# template-sveltekit-tailwind
 
-[![Desktop](https://github.com/FL03/template-sveltekit-tailwindcss/actions/workflows/desktop.yml/badge.svg)](https://github.com/FL03/template-sveltekit-tailwindcss/actions/workflows/desktop.yml)
-[![Docker](https://github.com/FL03/template-sveltekit-tailwindcss/actions/workflows/docker.yml/badge.svg)](https://github.com/FL03/template-sveltekit-tailwindcss/actions/workflows/docker.yml)
+[![Docker](https://github.com/FL03/template-sveltekit-tailwind/actions/workflows/docker.yml/badge.svg)](https://github.com/FL03/template-sveltekit-tailwind/actions/workflows/docker.yml)
 
 ***
 
-template-sveltekit-tailwindcss
+template-sveltekit-tailwind is a template application for SvelteKit with TailwindCSS. The template is designed to be used as a starting point for new projects, simplifying the initial setup and
+providing several useful components.
 
 ## Getting Started
 
