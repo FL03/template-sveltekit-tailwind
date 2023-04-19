@@ -4,10 +4,10 @@ import preprocess from "svelte-preprocess";
 
 const config = {
 	kit: {
-		...(process.env.MODE !== "vercel") && {
+		...(process.env.ADAPTER !== "vercel") && {
 			adapter: adapter()
 		},
-		...(process.env.MODE === "vercel") && {
+		...(process.env.ADAPTER === "vercel") && {
 			adapter: adapter_vercel()
 		},
 	},

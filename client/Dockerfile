@@ -16,7 +16,8 @@ RUN npm install && npm run build
 
 FROM builder as development
 
-ENV MODE="production"
+ENV ADAPTER="node" \
+    MODE="production"
 
 EXPOSE 3000
 CMD [ "npm", "run", "start" ]
