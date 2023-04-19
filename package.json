@@ -1,0 +1,25 @@
+{
+	"author": "FL03 <jo3mccain@icloud.com> (https://github.com/FL03)",
+	"bugs": "https://github.com/FL03/template-sveltekit-tailwindcss/issues",	
+	"description": "template-sveltekit-tailwindcss",
+	"keywords": [],
+	"homepage": "https://github.com/FL03/template-sveltekit-tailwindcss/wiki",
+	"license": "Apache-2.0",
+	"name": "@template-sveltekit-tailwindcss/app",
+	"readme": "https://github.com/FL03/template-sveltekit-tailwindcss/#README",
+  	"repository": "https://github.com/FL03/template-sveltekit-tailwindcss",
+	"scripts": {
+		"build": "npm run client:build",
+		"dev": "npm run client:dev",
+		"start": "npm run client:start",
+		"client:build": "npm run build --workspace=@app/client",
+		"client:dev": "npm run dev --workspace=@app/client",
+		"client:install": "npm install --workspace=@app/client",
+		"client:start": "npm run start --workspace=@app/client"
+	},
+	"type": "module",
+	"version": "0.1.0",
+	"workspaces": [
+		"client"
+	]
+}

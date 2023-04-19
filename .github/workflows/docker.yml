@@ -1,0 +1,38 @@
+name: Docker
+
+on:
+  pull_request:
+    branches: [ "main", "master", "prod*" ]
+    tags: [ "v*.*.*" ]
+  push:
+    branches: [ "main", "master", "prod*" ]
+    tags: [ "v*.*.*" ]
+  schedule:
+    - cron: "30 9 * * *"
+  workflow_dispatch:
+
+env:
+  IMAGE_TAG: latest
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build the Docker image
+        run: docker buildx build --tag ${{ secrets.DOCKERHUB_USERNAME }}/pzzld-eth-app client
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Publish to Registry
+      uses: elgohr/Publish-Docker-Github-Action@v5
+      with:
+        dockerfile: client/Dockerfile
+        name: ${{ secrets.DOCKERHUB_USERNAME }}/pzzld-eth-app
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+        snapshot: true
+        tags: next
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        
