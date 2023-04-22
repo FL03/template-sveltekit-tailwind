@@ -37,8 +37,11 @@
 </svelte:head>
 
 
-<div id="map" style="width: {width}px; height: {height}px;" bind:this={container}></div>
+<div id="map" bind:this={container}></div>
 
 <style>
-
+    #map {
+        width: 600;
+        height: 600;
+    }
 </style>
