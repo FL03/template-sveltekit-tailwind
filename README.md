@@ -16,7 +16,7 @@ Make sure you have nodejs installed on your host system
 #### *Clone the repository*
 
 ```bash
-git clone https://github.com/FL03/template-sveltekit-tailwindcss
+git clone https://github.com/FL03/template-sveltekit-tailwind
 ```
 
 #### *Setup the environment*

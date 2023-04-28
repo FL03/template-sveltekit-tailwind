@@ -2,7 +2,7 @@ name: Docker
 
 on:
   pull_request:
-    branches: [ main, master ]
+    branches-ignore: [ "beta*", "dev*", "next*" ]
   push:
     branches-ignore: [ "beta*", "dev*", "next*" ]
     tags: [ "nightly*",  "v*.*.*" ]
@@ -13,30 +13,18 @@ on:
   workflow_dispatch:
 
 env:
-  IMAGE_TAG: latest
-  TARGET_DIR: client
+  BASENAME: ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    env:
-      IMAGE_NAME: ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}
-    steps:
-      - uses: actions/checkout@v3
-      - name: Build the Docker image
-        run: docker buildx build --tag ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }} ${{ env.TARGET_DIR}}
   publish:
-    env:
-      IMAGE_NAME: ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}
-    needs: build
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
     - name: Publish to Registry
       uses: elgohr/Publish-Docker-Github-Action@v5
       with:
-        dockerfile: ${{ env.TARGET_DIR}}/Dockerfile
-        name: ${{ env.IMAGE_NAME }}
+        dockerfile: Dockerfile
+        name: ${{ env.BASENAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
         snapshot: true
         tags: latest

@@ -1,5 +1,4 @@
 import { writable } from 'svelte/store';
-import type { Firestore } from 'firebase/firestore';
 import { onAuthStateChanged, type Auth } from 'firebase/auth';
 
 /**
@@ -31,4 +30,4 @@ export function userStore(auth: Auth) {
   }
   
   // SDK store for FirebaseApp comopnent
-  export const sdk = writable<{ auth: Auth; firestore: Firestore }>();
+  export const sdk = writable<{ auth: Auth; }>();
