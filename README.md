@@ -1,6 +1,7 @@
 # template-sveltekit-tailwind
 
 [![Docker](https://github.com/FL03/template-sveltekit-tailwind/actions/workflows/docker.yml/badge.svg)](https://github.com/FL03/template-sveltekit-tailwind/actions/workflows/docker.yml)
+[![npm](https://github.com/FL03/template-sveltekit-tailwind/actions/workflows/npm.yml/badge.svg)](https://github.com/FL03/template-sveltekit-tailwind/actions/workflows/npm.yml)
 
 ---
 
