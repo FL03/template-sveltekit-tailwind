@@ -1,17 +1,15 @@
-
-import firebase from 'svelte-adapter-firebase';
-import preprocess from "svelte-preprocess";
+import adapterNode from '@sveltejs/adapter-node';
+import adapterVercel from '@sveltejs/adapter-vercel';
+import multiAdapter from '@macfja/svelte-multi-adapter'
+import { vitePreprocess } from '@sveltejs/kit/vite';
 
 /** @type {import('@sveltejs/kit').Config} */
-const config = {
-	kit: {
-		adapter: firebase()
-	},
-	preprocess: [
-		preprocess({
-			postcss: true,
-		}),
-	],
-};
+export default {
+  kit: {
+    adapter: multiAdapter([adapterNode(), adapterVercel()]),
 
-export default config;
+  },
+  preprocess: vitePreprocess({
+    postcss: true
+  })
+};

@@ -1,0 +1,17 @@
+**/.DS_Store/
+**/__sapper__/
+**/.svelte-kit/
+
+**/build/
+**/dist/
+**/node_modules/
+**/package/
+
+.env
+.env.*
+!.env.example
+
+*.lock
+*.lock.*
+*-lock.*
+!flake.lock

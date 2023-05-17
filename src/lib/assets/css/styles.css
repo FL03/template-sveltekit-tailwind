@@ -1,36 +1,33 @@
-@import '@fontsource/fira-mono';
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-:root {
-	--color-dark: rbg(0, 0, 0);
+.text-center {
+  text-align: center;
 }
 
-body {
-	background: #FFF;
-	color: var(--color-dark);
-	display: flex;
-	flex-direction: column;
-	margin: 0;
-	min-height: 100vh;
-	padding: 0;
+.screen {
+  min-height: 100vh;
+  min-width: 100vw;
 }
 
-*, *::before, *::after {
-  	box-sizing: inherit;
+/* Background */
+.bg-gradient-to-br {
+  background-image: linear-gradient(to bottom right, var(--from), var(--via), var(--to));
 }
 
-html {
-	box-sizing: border-box;
-}
-.banner {
-	align-items: center;
-	display: flex;
-	justify-content: center;
+.bg-gradient-to-bl {
+  background-image: linear-gradient(to bottom left, var(--from), var(--via), var(--to));
 }
 
-.center {
-	align-items: center;
-	justify-content: center;
+.bg-gradient-to-tr {
+  background-image: linear-gradient(to top right, var(--from), var(--via), var(--to));
+}
+
+.bg-gradient-to-tl {
+  background-image: linear-gradient(to top left, var(--from), var(--via), var(--to));
+}
+
+.bg-gradient-to-r {
+  background-image: linear-gradient(to right, var(--from), var(--via), var(--to));
+}
+
+.bg-gradient-to-l {
+  background-image: linear-gradient(to left, var(--from), var(--via), var(--to));
 }
