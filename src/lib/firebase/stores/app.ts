@@ -1,12 +1,13 @@
 import { browser, dev } from '$app/environment';
-import { PUBLIC_FIREBASE_CONFIG } from '$env/static/public';
-import type { FirebaseApp, FirebaseOptions } from 'firebase/app';
+// import { PUBLIC_FIREBASE_CONFIG } from '$env/static/public';
+import type { FirebaseApp } from 'firebase/app';
 import { readable } from 'svelte/store';
+import { devConfig, firebaseConfig } from '../firebase.config';
 
-const firebaseConfig: FirebaseOptions = JSON.parse(PUBLIC_FIREBASE_CONFIG);
+// const firebaseConfig: FirebaseOptions = JSON.parse(PUBLIC_FIREBASE_CONFIG);
 
 if (dev) {
-  console.log('firebaseConfig (client)', firebaseConfig);
+  console.log('firebaseConfig (client)', devConfig);
 }
 
 // Loads up the firebase app on demand and places it into a store
@@ -18,7 +19,7 @@ function createApp() {
     async function init() {
       if (!app) {
         const { initializeApp } = await import('firebase/app');
-        app = initializeApp(firebaseConfig);
+        app = initializeApp(dev ? devConfig : firebaseConfig);
       }
       set(app);
     }
