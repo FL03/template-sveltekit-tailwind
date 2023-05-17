@@ -26,7 +26,7 @@ WORKDIR /app
 RUN rm -rf ./*
 
 COPY --from=builder /workspace/package.json .
-COPY --from=builder /workspace/dist .
+COPY --from=builder /workspace/build .
 
 EXPOSE 3000
 
