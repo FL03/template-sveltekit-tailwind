@@ -48,7 +48,7 @@
   },
   "keywords": [],
   "license": "Apache-2.0",
-  "main": "dist/index.js",
+  "main": "build/index.js",
   "name": "@template/sveltekit-tailwind",
   "readme": "https://github.com/FL03/template-sveltekit-tailwind/#README",
   "repository": "https://github.com/FL03/template-sveltekit-tailwind",
@@ -61,7 +61,7 @@
     "lint": "prettier --plugin-search-dir . --check . && eslint .",
     "format": "prettier --plugin-search-dir . --write .",
     "preview": "vite preview --host --port 3000",
-    "start": "node ./dist/index.js"
+    "node:start": "node ./build/index.js"
   },
   "type": "module",
   "version": "0.1.0"
