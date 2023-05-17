@@ -13,15 +13,15 @@ if (dev || process.env.NODE_ENV === 'development') {
 
 if (dev) {
   firebaseConfig = {
-    projectId: "svkcl-d7eb1",
-    storageBucket: "demo.appspot.com"
+    projectId: 'svkcl-d7eb1',
+    storageBucket: 'demo.appspot.com'
   };
   console.log('firebaseConfig (server)', firebaseConfig);
 } else {
   firebaseConfig = {
-    projectId: "svkcl-d7eb1",
-    storageBucket: "svkcl-d7eb1.appspot.com"
-  }
+    projectId: 'svkcl-d7eb1',
+    storageBucket: 'svkcl-d7eb1.appspot.com'
+  };
 }
 
 // this is the server-side firebase client
