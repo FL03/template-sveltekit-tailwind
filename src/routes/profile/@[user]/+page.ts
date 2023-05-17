@@ -14,6 +14,6 @@ export async function load({ params }) {
     articles,
     pages: snapshot.size / page_size,
     params,
-    profile: { ...pdoc.data() },
+    profile: { ...pdoc.data() }
   };
 }

@@ -15,7 +15,6 @@
     <div class="mx-auto px-1.5">
       <PostTimeline articles={data.articles} />
     </div>
-    
   </TabItem>
   <TabItem class="w-full">
     <span slot="title">History</span>

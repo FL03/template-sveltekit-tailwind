@@ -2,7 +2,15 @@
   import { enhance } from '$app/forms';
   import { page } from '$app/stores';
 
-  import { Avatar, Button, Card, Checkbox, Dropdown, DropdownItem, MenuButton } from 'flowbite-svelte';
+  import {
+    Avatar,
+    Button,
+    Card,
+    Checkbox,
+    Dropdown,
+    DropdownItem,
+    MenuButton
+  } from 'flowbite-svelte';
 
   /** @type {import('./$types').PageData} */
   export let data;
@@ -25,60 +33,54 @@
   </div>
   <div class="flex flex-col items-center pb-4">
     <Avatar size="lg" src={data.profile.image} />
-      <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">{data.profile.username}</h5>
-      {#if data.profile.bio}
-        <span class="text-sm text-gray-500 dark:text-gray-400">{data.profile.bio}</span>
-      {/if}
+    <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">{data.profile.username}</h5>
+    {#if data.profile.bio}
+      <span class="text-sm text-gray-500 dark:text-gray-400">{data.profile.bio}</span>
+    {/if}
 
-      {#if data.profile.username === data.user?.username}
-        <a href="/settings" class="btn btn-sm btn-outline-secondary action-btn">
-          <i class="ion-gear-a" />
-          Settings
-        </a>
-      {:else if data.user}
-        <form
-          method="POST"
-          action="/profile/@{data.profile.username}?/toggleFollow"
-          use:enhance={({ form }) => {
-            // optimistic UI
-            data.profile.following = !data.profile.following;
+    {#if data.profile.username === data.user?.username}
+      <a href="/settings" class="btn btn-sm btn-outline-secondary action-btn">
+        <i class="ion-gear-a" />
+        Settings
+      </a>
+    {:else if data.user}
+      <form
+        method="POST"
+        action="/profile/@{data.profile.username}?/toggleFollow"
+        use:enhance={({ form }) => {
+          // optimistic UI
+          data.profile.following = !data.profile.following;
 
-            const button = form.querySelector('button');
-            button.disabled = true;
+          const button = form.querySelector('button');
+          button.disabled = true;
 
-            return ({ result, update }) => {
-              button.disabled = false;
-              if (result.type === 'error') update();
-            };
-          }}
-        >
-          <input hidden type="checkbox" name="following" checked={data.profile.following} />
-          <Button>
-            <i class="ion-plus-round" />
-            {data.profile.following ? 'Unfollow' : 'Follow'}
-            {data.profile.username}
+          return ({ result, update }) => {
+            button.disabled = false;
+            if (result.type === 'error') update();
+          };
+        }}
+      >
+        <input hidden type="checkbox" name="following" checked={data.profile.following} />
+        <Button>
+          <i class="ion-plus-round" />
+          {data.profile.following ? 'Unfollow' : 'Follow'}
+          {data.profile.username}
         </Button>
-        </form>
-        <div class="flex mt-4 space-x-3 lg:mt-6">
-          <Button>Add friend</Button>
-          <Button color="light" class="dark:text-white">Message</Button>
-        </div>
-      {:else}
-        <a href="/login">Sign in to follow</a>
-      {/if}
-      
-      
+      </form>
+      <div class="flex mt-4 space-x-3 lg:mt-6">
+        <Button>Add friend</Button>
+        <Button color="light" class="dark:text-white">Message</Button>
+      </div>
+    {:else}
+      <a href="/login">Sign in to follow</a>
+    {/if}
   </div>
 </Card>
 
 <div class="articles-toggle">
   <ul class="nav nav-pills outline-active">
     <li class="nav-item">
-      <a
-        href="/profile/@{data.profile.username}"
-        class="nav-link"
-        class:active={!is_favorites}
-      >
+      <a href="/profile/@{data.profile.username}" class="nav-link" class:active={!is_favorites}>
         Articles
       </a>
     </li>

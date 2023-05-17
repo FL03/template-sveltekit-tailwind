@@ -9,9 +9,7 @@
 
 <!-- using the session state avoids the initial delay while the client auth resolves -->
 {#if $session.user}
-  <button class={props} id="login-btn" on:click={auth.signOut}>
-    Sign Out
-  </button>
+  <button class={props} id="login-btn" on:click={auth.signOut}> Sign Out </button>
 {:else}
   <a class={props} href="/login" id="login-btn" type="button">
     <slot>Login &rarr</slot>

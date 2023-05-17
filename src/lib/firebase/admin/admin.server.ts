@@ -20,6 +20,6 @@ if (dev) {
 }
 
 // this is the server-side firebase client
-export const app = initializeApp(dev ? devConfig: firebaseConfig, 'server' + Math.random());
+export const app = initializeApp(dev ? devConfig : firebaseConfig, 'server' + Math.random());
 export const auth = getAuth(app);
 export const firestore = getFirestore(app);

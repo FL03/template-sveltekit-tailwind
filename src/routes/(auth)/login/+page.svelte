@@ -16,28 +16,15 @@
 
 <h1 class="text-xs-center">Sign In</h1>
 
-
 <ErrorList errors={form?.errors} />
 
 <form use:enhance method="POST">
-  <Input
-    name="email"
-    placeholder="Email"
-    type="email"
-    bind:value={email}
-  />
-  <Input
-    name="password"
-    placeholder="Password"
-    type="password"
-    bind:value={password}
-  />
+  <Input name="email" placeholder="Email" type="email" bind:value={email} />
+  <Input name="password" placeholder="Password" type="password" bind:value={password} />
   <div class="w-full divide-y">
     <LoginWithBtn provider="google" />
   </div>
-  <Button type="submit">
-    Login
-  </Button>
+  <Button type="submit">Login</Button>
 </form>
 
 <p class="text-xs-center">

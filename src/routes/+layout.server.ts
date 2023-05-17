@@ -6,7 +6,7 @@ export async function load({ locals }) {
   const session = _getSession(user);
 
   // layout data could also return additional data other than the session
-  return { 
+  return {
     session
   };
 }

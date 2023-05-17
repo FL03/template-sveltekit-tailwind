@@ -15,7 +15,7 @@ export const POST: RequestHandler = async ({ request, cookies }) => {
   const options = { maxAge: WEEK_IN_SECONDS, httpOnly: true, secure: !dev };
   cookies.set('session', sessionCookie, options);
 
-  return json(_getSession({...user, name: user.name, email: user.email || ''}));
+  return json(_getSession({ ...user, name: user.name, email: user.email || '' }));
 };
 
 // DELETE clears the session cookie
