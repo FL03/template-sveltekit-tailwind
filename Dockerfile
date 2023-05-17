@@ -1,4 +1,4 @@
-FROM node:18 as builder-base
+FROM node:20 as builder-base
 
 RUN apt-get update -y && apt-get upgrade -y
 
@@ -10,7 +10,7 @@ WORKDIR /workspace
 COPY . .
 RUN npm install && npm run build
 
-FROM node:18-slim as production
+FROM node:20-slim as production
 
 RUN apt-get update -y && apt-get upgrade -y
 
