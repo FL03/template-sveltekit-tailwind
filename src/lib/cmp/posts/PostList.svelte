@@ -1,11 +1,10 @@
 <script lang="ts">
-  import { enhance } from '$app/forms';
+  import { page } from '$app/stores';
   import {} from 'flowbite-svelte';
 
-  import { page } from '$app/stores';
   import PostPreview from './PostPreview.svelte';
 
-  export let articles;
+  export let articles: import('$lib/models').Post[] = [];
 </script>
 
 {#if articles.length === 0}

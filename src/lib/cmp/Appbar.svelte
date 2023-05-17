@@ -1,10 +1,11 @@
 <script lang="ts">
   import { BottomNav, BottomNavItem, Modal, Tooltip } from 'flowbite-svelte';
   import PostForm from '$lib/cmp/posts/PostForm.svelte';
+  import { page } from '$app/stores';
   let modalToggle = false;
 </script>
 
-<BottomNav position="sticky" navType="group" innerDiv="grid-cols-5">
+<BottomNav position="sticky" navType="border" innerDiv="grid-cols-5">
   <BottomNavItem btnName="Home" appBtnPosition="left" href="/">
     <a href="/">
       <svg
@@ -99,13 +100,8 @@
   </BottomNavItem>
 </BottomNav>
 
-<Modal title="New Post" bind:open={modalToggle} size="lg" autoclose>
-  <PostForm
-    article={{
-      title: '',
-      description: '',
-      body: '',
-      tagList: []
-    }}
-  />
-</Modal>
+{#if $page.data.user}
+  <Modal autoclose color="form" size="lg" title="New Post" bind:open={modalToggle}>
+    <PostForm user={$page.data.user} />
+  </Modal>
+{/if}

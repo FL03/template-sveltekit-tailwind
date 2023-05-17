@@ -1,19 +1,19 @@
 <script lang="ts">
   import { enhance } from '$app/forms';
 
-  export let article;
-  export let user;
+  export let article: import('$lib/models').Post;
+  export let user: import('$lib/types').User;
 </script>
 
 <div class="article-meta">
-  <a href="/profile/@{article.author.username}">
-    <img src={article.author.image} alt={article.author.username} />
+  <a href="/profile/@{article.author.uid}">
+    <img src={article.author.picture} alt="#" />
   </a>
 
   <div class="info">
-    <a href="/profile/@{article.author.username}" class="author">{article.author.username}</a>
+    <a href="/profile/@{article.author.uid}" class="author">{article.author.name}</a>
     <span class="date">
-      {new Date(article.createdAt).toDateString()}
+      {article.createdAt}
     </span>
   </div>
 

@@ -1,20 +1,23 @@
-<script>
+<script lang="ts">
   import { enhance } from '$app/forms';
-  import {} from 'flowbite-svelte';
 
-  export let article;
-  export let user;
+  import { Card, Checkbox } from 'flowbite-svelte';
+
+  export let article: import('$lib/models').Post | import('firebase/firestore').DocumentData;
+  export let user: import('$lib/types').User;
+
+  let hCard = false;
 </script>
 
-<div class="article-preview">
+<Card horizontal reverse={hCard}>
   <div class="article-meta">
-    <a href="/profile/@{article.author.username}">
-      <img src={article.author.image} alt={article.author.username} />
+    <a href="/profile/@{article.author.uid}">
+      <img src={article.author.picture} alt={article.author.uid} />
     </a>
 
     <div class="info">
-      <a class="author" href="/profile/@{article.author.username}">{article.author.username}</a>
-      <span class="date">{new Date(article.createdAt).toDateString()}</span>
+      <a class="author" href="/profile/@{article.author.uid}">{article.author.username}</a>
+      <span class="date">{article.createdAt}</span>
     </div>
 
     {#if user}
@@ -32,6 +35,8 @@
           }
 
           const button = form.querySelector('button');
+          if (!button) return;
+
           button.disabled = true;
 
           return ({ result, update }) => {
@@ -41,7 +46,7 @@
         }}
         class="pull-xs-right"
       >
-        <input hidden type="checkbox" name="favorited" checked={article.favorited} />
+        <Checkbox hidden name="favorited" checked={article.favorited} />
         <button class="btn btn-sm {article.favorited ? 'btn-primary' : 'btn-outline-primary'}">
           <i class="ion-heart" />
           {article.favoritesCount}
@@ -55,11 +60,11 @@
     <p>{article.description}</p>
     <span>Read more...</span>
     <ul class="tag-list">
-      {#each article.tagList as tag}
+      {#each article.tags as tag}
         <li class="tag-default tag-pill tag-outline"><a href="/?tag={tag}">{tag}</a></li>
       {/each}
     </ul>
   </a>
-</div>
+</Card>
 
 <style></style>

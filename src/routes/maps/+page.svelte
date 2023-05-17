@@ -3,18 +3,12 @@
   import { onMount } from 'svelte';
 
   import { Map, styles } from '@svkcl/google-maps';
-  import { Button, ButtonGroup } from 'flowbite-svelte';
-  import { getPoints, heatmapGradients } from '$lib/heatmap.ts';
+  import { Range, Search, Toggle, Tooltip } from 'flowbite-svelte';
 
-  import {
-    Input,
-    Range,
-    Toggle,
-    Toolbar,
-    ToolbarButton,
-    ToolbarGroup,
-    Tooltip
-  } from 'flowbite-svelte';
+  import { Toolbar, ToolbarButton, ToolbarGroup } from 'flowbite-svelte';
+
+  /** @type {import('./$types').PageData} */
+  export let data;
 
   // Values
   let opacity: number = 0.2;
@@ -27,7 +21,7 @@
   let service: google.maps.places.PlacesService;
 
   function changeGradient(): void {
-    heatmap.set('gradient', heatmap.get('gradient') ? null : heatmapGradients);
+    heatmap.set('gradient', heatmap.get('gradient') ? null : data.heatmap.gradients);
   }
 
   function adjustRadius(): void {
@@ -58,7 +52,7 @@
         if (results[0].geometry?.location) {
           map.setCenter(results[0].geometry.location);
           infowindow.setPosition(results[0].geometry.location);
-          inforwindow.getContent();
+          infowindow.getContent();
         }
       }
     });
@@ -67,7 +61,7 @@
   onMount(() => {
     infowindow = new google.maps.InfoWindow();
     heatmap = new google.maps.visualization.HeatmapLayer({
-      data: getPoints(),
+      data: data.heatmap.data,
       map,
       radius
     });
@@ -75,15 +69,9 @@
   });
 </script>
 
-<Map
-  mapId={env.PUBLIC_GOOGLE_MAPS_ID}
-  styles={styles.darkModeMapStyle}
-  bind:map
-  --min-height="75vh"
-  --min-width="100%"
-/>
+<Map mapId={env.PUBLIC_GOOGLE_MAPS_ID} --min-height="75vh" bind:map />
 
-<Toolbar>
+<Toolbar embedded color="none">
   <ToolbarGroup>
     <Toggle checked color="blue" on:click={() => heatmap.setMap(heatmap.getMap() ? null : map)}
       >Heatmap</Toggle
@@ -93,7 +81,8 @@
     <Range bind:value={radius} min={0} max={50} on:change={adjustRadius} />
     <Tooltip arrow={false}>Update the radius of the entries</Tooltip>
     <ToolbarButton
-      on:click={() => heatmap.set('gradient', heatmap.get('gradient') ? null : heatmapGradients)}
+      on:click={() =>
+        heatmap.set('gradient', heatmap.get('gradient') ? null : data.heatmap.gradients)}
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -130,10 +119,9 @@
     </ToolbarButton>
   </ToolbarGroup>
   <ToolbarGroup>
-    <input
-      class="border border-gray-300 rounded-md p-2"
-      id="search"
+    <Search
       placeholder="Search for a place"
+      size="md"
       bind:value={query}
       on:keydown={(e) => e.key === 'Enter' && searchMap(query)}
     />

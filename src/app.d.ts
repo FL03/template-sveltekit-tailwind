@@ -5,9 +5,11 @@ declare global {
   namespace App {
     // interface Error {}
     interface Locals {
-      user?: any | null;
+      user: import('$lib/types').User | null;
     }
-    // interface PageData {}
+    interface PageData {
+      user: import('$lib/types').User | null;
+    }
     // interface Platform {}
   }
   namespace svelteHTML {

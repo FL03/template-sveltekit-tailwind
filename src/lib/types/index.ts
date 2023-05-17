@@ -1,11 +1,11 @@
-import type { Filter } from './filters.ts';
+import { Filter } from './filters';
 export { Filter };
 
-import type { Session } from './session.ts';
+import { Session } from './session';
 export { Session };
 
-import type { User, UserFilter, UserName } from './users.ts';
-export { User, UserFilter, UserName };
+import { User } from './users';
+export { User };
 
 export interface Link {
   href: string;

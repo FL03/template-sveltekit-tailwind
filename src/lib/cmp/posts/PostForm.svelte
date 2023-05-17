@@ -3,65 +3,49 @@
   import { flip } from 'svelte/animate';
   import { scale } from 'svelte/transition';
 
-  import { Button, Checkbox, Label, Input } from 'flowbite-svelte';
+  import { Button, Checkbox, Label, Input, Textarea } from 'flowbite-svelte';
+  import { Post } from '$lib/models/posts';
 
-  export let article: import('$lib/models/index.ts').Post;
+  export let user: import('$lib/types').User;
+  export let article: Post = new Post(user);
 </script>
 
-<form use:enhance method="POST">
-  <fieldset class="form-group">
-    <input
-      name="title"
-      class="form-control form-control-lg"
-      placeholder="Article Title"
-      value={article.title}
-    />
-  </fieldset>
+<form class="bg-inherit" use:enhance method="POST">
+  <Input name="title" placeholder="Title" bind:value={article.title} />
+  <Input
+    name="description"
+    placeholder="What's this article about?"
+    bind:value={article.description}
+  />
+  <Textarea
+    name="body"
+    rows="8"
+    placeholder="Write your article (in markdown)"
+    bind:value={article.body}
+  />
 
-  <fieldset class="form-group">
-    <input
-      name="description"
-      class="form-control"
-      placeholder="What's this article about?"
-      value={article.description}
-    />
-  </fieldset>
-
-  <fieldset class="form-group">
-    <textarea
-      name="body"
-      class="form-control"
-      rows="8"
-      placeholder="Write your article (in markdown)"
-      value={article.body}
-    />
-  </fieldset>
-
-  <fieldset class="form-group">
-    <input
-      class="form-control"
-      placeholder="Enter tags"
-      on:keydown={(event) => {
-        if (event.key === 'Enter') {
-          event.preventDefault();
-          if (!article.tagList.includes(event.target.value)) {
-            article.tagList = [...article.tagList, event.target.value];
-          }
-
-          event.target.value = '';
+  <Input
+    placeholder="Enter tags"
+    on:keydown={(event) => {
+      if (event.key === 'Enter' && event.target) {
+        event.preventDefault();
+        if (!article.tags.includes(event.target.value)) {
+          article.tags = [...article.tags, event.target.value];
         }
-      }}
-    />
-  </fieldset>
 
-  <div class="tag-list">
-    {#each article.tagList as tag, i (tag)}
+        event.target.value = '';
+      }
+    }}
+  />
+
+  <div class="tag-list divide-y">
+    {#each article.tags as tag, i (tag)}
       <button
         transition:scale|local={{ duration: 200 }}
         animate:flip={{ duration: 200 }}
         class="tag-default tag-pill"
         on:click|preventDefault={() => {
-          article.tagList = [...article.tagList.slice(0, i), ...article.tagList.slice(i + 1)];
+          article.tags = [...article.tags.slice(0, i), ...article.tags.slice(i + 1)];
         }}
         aria-label="Remove {tag} tag"
       >
@@ -71,11 +55,11 @@
     {/each}
   </div>
 
-  {#each article.tagList as tag}
-    <input hidden name="tag" value={tag} />
+  {#each article.tags as tag}
+    <Input hidden name="tag" bind:value={tag} />
   {/each}
 
-  <button class="btn btn-lg pull-xs-right btn-primary">Publish Article</button>
+  <Button type="submit">Publish</Button>
 </form>
 
 <style>

@@ -1,10 +1,9 @@
-<script>
+<script lang="ts">
   import { enhance } from '$app/forms';
-
   import { Card } from 'flowbite-svelte';
 
-  export let comment;
-  export let user;
+  export let comment: import('$lib/models/comments').Comment;
+  export let user: import('$lib/types').User;
 </script>
 
 <Card>
@@ -14,7 +13,7 @@
 
   <div class="card-footer">
     <a href="/profile/@{comment.author.username}" class="comment-author">
-      <img src={comment.author.image} class="comment-author-img" alt={comment.author.username} />
+      <img src={comment.author.picture} class="comment-author-img" alt={comment.author.username} />
     </a>
 
     <a href="/profile/@{comment.author.username}" class="comment-author">

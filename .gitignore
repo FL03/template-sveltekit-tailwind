@@ -1,7 +1,10 @@
 # Artifacts
 **/.artifacts/data/
 **/.docker/data/
+**/.firebase/
+**/.vercel/
 **/artifacts/
+**/build/
 **/debug/
 **/dist/
 **/env/
@@ -11,8 +14,16 @@
 **/config.*
 **/*.config.*
 
+!**/default.config.*
+!**/*.config.js
+!**/*.config.cjs
+!**/*.config.mjs
+!**/*.config.ts
+
 **/*.env
 **/*.env.*
+
+!**/*.env.example
 
 # IDEs
 **/.idea/
@@ -67,7 +78,4 @@
 **/*.zip.*
 
 # Exceptions
-!**/default.config.*
-!**/*.env.example
-!**/*.config.js
-!**/*.config.cjs
+

@@ -1,12 +1,8 @@
-FROM node:18.12.1 as base
+FROM node:18 as builder-base
 
 RUN apt-get update -y && apt-get upgrade -y
 
-FROM base as langspace
-
-# RUN npm install -g ganache-cli hardhat truffle
-
-FROM langspace as builder
+FROM builder-base as builder
 
 ADD . /workspace
 WORKDIR /workspace
@@ -16,19 +12,22 @@ RUN npm install && npm run build
 
 FROM builder as development
 
-ENV ADAPTER="node" \
-    MODE="production"
+ENV PUBLIC_GOOGLE_MAPS_API_KEY=""
 
 EXPOSE 3000
-CMD [ "npm", "run", "start" ]
+CMD [ "npm", "run", "node:start" ]
 
-# FROM node:18.12.1-slim
+FROM node:18-alpine as production
 
-# COPY --from=builder /workspace/build /app/build
-# COPY --from=builder /workspace/package.json /app/package.json
-# COPY --from=builder /workspace/packages/contracts /app/packages/contracts
+ENV PUBLIC_GOOGLE_MAPS_API_KEY=""
 
-# WORKDIR /app
+WORKDIR /app
 
-# EXPOSE 3000
-# CMD ["node", "build/index.js"]
+RUN rm -rf ./*
+
+COPY --from=builder /workspace/package.json .
+COPY --from=builder /workspace/dist .
+
+EXPOSE 3000
+
+CMD ["node", "index.js"]

@@ -2,7 +2,7 @@
 
 [![Docker](https://github.com/FL03/template-sveltekit-tailwind/actions/workflows/docker.yml/badge.svg)](https://github.com/FL03/template-sveltekit-tailwind/actions/workflows/docker.yml)
 
-***
+---
 
 template-sveltekit-tailwind is a template application for SvelteKit with TailwindCSS. The template is designed to be used as a starting point for new projects, simplifying the initial setup and
 providing several useful components.
@@ -13,20 +13,20 @@ providing several useful components.
 
 Make sure you have nodejs installed on your host system
 
-#### *Clone the repository*
+#### _Clone the repository_
 
 ```bash
 git clone https://github.com/FL03/template-sveltekit-tailwind
 ```
 
-#### *Setup the environment*
+#### _Setup the environment_
 
 ```bash
 npm install
 npm run build
 ```
 
-#### *Start the application*
+#### _Start the application_
 
 ```bash
 npm run start
@@ -36,19 +36,19 @@ npm run start
 
 Make sure you have docker installed on the target system
 
-#### *Pull the image*
+#### _Pull the image_
 
 ```bash
 docker pull jo3mccain/template-sveltekit-tailwindcss:latest
 ```
 
-#### *Build the image locally (optional)*
+#### _Build the image locally (optional)_
 
 ```bash
 docker buildx build --tag template-sveltekit-tailwindcss:latest .
 ```
 
-#### *Run the image*
+#### _Run the image_
 
 ```bash
 docker run -p 3000:3000 jo3mccain/template-sveltekit-tailwindcss:latest

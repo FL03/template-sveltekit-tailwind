@@ -2,11 +2,14 @@ import type { User } from '$lib/types';
 
 export declare interface Profile {
   favorites?: string[];
-  user?: User;
+  user: User;
 }
 
-export interface ProfileState {
-  profile: Profile | null;
-  loading: boolean;
-  error?: string;
+export class Profile implements Profile {
+  constructor(user: User) {
+    this.user = user;
+  }
+  set setFavorites(favorites: string[]) {
+    this.favorites = favorites;
+  }
 }

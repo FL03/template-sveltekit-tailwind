@@ -1,11 +1,9 @@
-<script>
-  import { scale } from 'svelte/transition';
-  import { flip } from 'svelte/animate';
-  import { enhance } from '$app/forms';
+<script lang="ts">
   import ErrorList from '$lib/cmp/errors/ErrorList.svelte';
-  import PostForm from '$lib/cmp/posts/PostForm.svelte';
-  export let article;
-  export let errors;
+  import PostForm from './PostForm.svelte';
+
+  export let user: import('$lib/types').User;
+  export let errors: any[] = [];
 </script>
 
 <div class="editor-page">
@@ -14,7 +12,7 @@
       <div class="col-md-10 offset-md-1 col-xs-12">
         <ErrorList {errors} />
 
-        <PostForm {article} />
+        <PostForm {user} />
       </div>
     </div>
   </div>

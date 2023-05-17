@@ -3,7 +3,7 @@
   import { Dropdown, DropdownItem, DropdownHeader, DropdownDivider } from 'flowbite-svelte';
   import { Avatar, DarkMode } from 'flowbite-svelte';
 
-  export let banner: string = 'Gambit';
+  export let banner: string = 'Template';
   export let logo = 'https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600';
 </script>
 

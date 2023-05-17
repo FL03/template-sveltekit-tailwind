@@ -28,6 +28,7 @@
     "flowbite": "latest",
     "flowbite-svelte": "latest",
     "flowbite-typography": "latest",
+    "geofire-common": "latest",
     "marked": "latest",
     "postcss": "latest",
     "prettier": "latest",
@@ -42,13 +43,13 @@
     "typescript": "latest",
     "vite": "beta"
   },
-  
   "engines": {
     "node": "18"
   },
   "keywords": [],
   "license": "Apache-2.0",
-  "name": "template-sveltekit-tailwindcss",
+  "main": "dist/index.js",
+  "name": "@template/sveltekit-tailwind",
   "readme": "https://github.com/FL03/template-sveltekit-tailwind/#README",
   "repository": "https://github.com/FL03/template-sveltekit-tailwind",
   "scripts": {

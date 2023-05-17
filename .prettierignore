@@ -1,17 +1,71 @@
-**/.DS_Store/
+# Artifacts
+**/.artifacts/data/
+**/.docker/data/
+**/.firebase/
+**/.vercel/
+**/artifacts/
+**/build/
+**/debug/
+**/dist/
+**/env/
+**/tmp/
+
+# Config
+**/config.*
+**/*.config.*
+
+**/*.env
+**/*.env.*
+
+# IDEs
+**/.idea/
+**/.vscode/
+
+# Node
+**/.nvmrc/
+**/build/
+**/node_modules/
+**/pkg/
+
+**/yarn.lock
+**/package-lock.json
+
+# Python
+**/__pycache__/
+**/.pytest_cache/
+**/venv/
+
+**/*.whl
+**/*.whl.*
+
+# Rust
+**/target/
+
+**/Cargo.lock
+
+**/*.bk
+**/*.bk.*
+
+# Svelte
 **/__sapper__/
+**/.DS_STORE/
 **/.svelte-kit/
 
-**/build/
-**/dist/
-**/node_modules/
-**/package/
+# File Extensions
+**/*.csv
+**/*.csv.*
 
-.env
-.env.*
-!.env.example
+**/*.db
+**/*.db.*
 
-*.lock
-*.lock.*
-*-lock.*
-!flake.lock
+**/*.db-*.*
+
+**/*.lock
+**/*-lock.*
+
+**/*.log
+**/*.log.*
+
+**/*.zip
+**/*.zip.*
+
