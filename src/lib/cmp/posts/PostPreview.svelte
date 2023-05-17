@@ -3,7 +3,7 @@
 
   import { Card, Checkbox } from 'flowbite-svelte';
 
-  export let article: import('$lib/models').Post | import('firebase/firestore').DocumentData;
+  export let article: import('$lib/models').Post;
   export let user: import('$lib/types').User;
 
   let hCard = false;

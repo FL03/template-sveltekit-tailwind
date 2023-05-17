@@ -1,10 +1,15 @@
 <script lang="ts">
+  import { page } from '$app/stores';
   import { Navbar, NavBrand, NavLi, NavUl, NavHamburger } from 'flowbite-svelte';
   import { Dropdown, DropdownItem, DropdownHeader, DropdownDivider } from 'flowbite-svelte';
   import { Avatar, DarkMode } from 'flowbite-svelte';
 
   export let banner: string = 'Template';
   export let logo = 'https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600';
+
+  function handleClick() {
+
+  }
 </script>
 
 <Navbar
@@ -58,12 +63,20 @@
     <NavHamburger on:click={toggle} class1="w-full md:flex md:w-auto md:order-1" />
   </div>
   <Dropdown placement="bottom" triggeredBy="#avatar-menu">
-    <DropdownHeader>
-      <span class="block text-sm"> Bonnie Green </span>
-      <span class="block truncate text-sm font-medium"> name@flowbite.com </span>
-    </DropdownHeader>
-    <DropdownItem divClass="text-black">Dashboard</DropdownItem>
+    {#if $page.data.user}
+      <DropdownHeader>
+        <span class="block text-sm">{$page.data.user.username}</span>
+        <span class="block truncate text-sm font-medium">{$page.data.user.email}</span>
+      </DropdownHeader>
+      <DropdownItem href="/profile">Profile</DropdownItem>
+      <DropdownItem href="/settings">Settings</DropdownItem>
+    {/if}
     <DropdownDivider />
-    <DropdownItem>Sign out</DropdownItem>
+    {#if $page.data.user}
+      <DropdownItem>Sign out</DropdownItem>
+    {:else}
+      <DropdownItem href="/login">Sign in</DropdownItem>
+      <DropdownItem href="/register">Sign up</DropdownItem>
+    {/if}
   </Dropdown>
 </Navbar>
