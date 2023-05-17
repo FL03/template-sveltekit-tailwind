@@ -7,9 +7,7 @@
   export let banner: string = 'Template';
   export let logo = 'https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600';
 
-  function handleClick() {
-
-  }
+  $: user = $page.data.session.user;
 </script>
 
 <Navbar
@@ -63,16 +61,16 @@
     <NavHamburger on:click={toggle} class1="w-full md:flex md:w-auto md:order-1" />
   </div>
   <Dropdown placement="bottom" triggeredBy="#avatar-menu">
-    {#if $page.data.user}
+    {#if user}
       <DropdownHeader>
-        <span class="block text-sm">{$page.data.user.username}</span>
-        <span class="block truncate text-sm font-medium">{$page.data.user.email}</span>
+        <span class="block text-sm">{user.username || user.name}</span>
+        <span class="block truncate text-sm font-medium">{user.email}</span>
       </DropdownHeader>
       <DropdownItem href="/profile">Profile</DropdownItem>
       <DropdownItem href="/settings">Settings</DropdownItem>
     {/if}
     <DropdownDivider />
-    {#if $page.data.user}
+    {#if user}
       <DropdownItem>Sign out</DropdownItem>
     {:else}
       <DropdownItem href="/login">Sign in</DropdownItem>

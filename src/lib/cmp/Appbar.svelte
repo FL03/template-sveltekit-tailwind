@@ -1,7 +1,7 @@
 <script lang="ts">
+  import { page } from '$app/stores';
   import { BottomNav, BottomNavItem, Modal, Tooltip } from 'flowbite-svelte';
   import PostForm from '$lib/cmp/posts/PostForm.svelte';
-  import { page } from '$app/stores';
   let modalToggle = false;
 </script>
 

@@ -95,4 +95,6 @@
   </ul>
 </div>
 
-<slot />
+<section class="py-2 w-full items-center justify-center">
+  <slot />
+</section>

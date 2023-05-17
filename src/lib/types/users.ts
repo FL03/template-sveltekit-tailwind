@@ -24,10 +24,10 @@ export declare interface UserMetadata {
 }
 
 export declare interface User {
-  name: string;
   email: string;
   email_verified?: boolean;
   metadata?: UserMetadata;
+  name: string;
   phone_number?: string;
   picture?: string;
   uid: string;

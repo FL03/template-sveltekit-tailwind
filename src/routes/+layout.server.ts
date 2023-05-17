@@ -1,5 +1,17 @@
+import { _getSession } from './session/+server';
+
 /** @type {import('@sveltejs/kit').LayoutServerLoad} */
-export function load({ locals }) {
+export async function load({ locals }) {
+  const { user } = locals;
+  const session = _getSession(user);
+
+  // layout data could also return additional data other than the session
+  return { 
+    session
+  };
+}
+
+function loader({ locals }) {
   return {
     user: locals.user && {
       username: locals.user.username,

@@ -5,9 +5,13 @@
 
   import { Button, Checkbox, Label, Input, Textarea } from 'flowbite-svelte';
   import { Post } from '$lib/models/posts';
+  import { firestore } from '$lib/firebase/stores';
 
   export let user: import('$lib/types').User;
   export let article: Post = new Post(user);
+  async function handleSubmit() {
+    await firestore.create(`posts`, { ...article });
+  }
 </script>
 
 <form class="bg-inherit" use:enhance method="POST">
@@ -59,7 +63,7 @@
     <Input hidden name="tag" bind:value={tag} />
   {/each}
 
-  <Button type="submit">Publish</Button>
+  <button type="submit" on:click|preventDefault={handleSubmit}>Publish</button>
 </form>
 
 <style>

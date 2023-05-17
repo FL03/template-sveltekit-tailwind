@@ -1,8 +1,11 @@
-<script lang="ts">
+<script>
   import '$lib/assets/css/app.css';
-  import { env } from '$env/dynamic/public';
-  import { Appbar, Navbar } from '$lib/cmp';
+  import { PUBLIC_GOOGLE_MAPS_API_KEY } from '$env/static/public';
+  import { Appbar, Footer, Navbar } from '$lib/cmp';
   import { GoogleMaps } from '@svkcl/google-maps';
+
+  /** @type {import('./$types').PageData}*/
+  export let data;
 </script>
 
 <svelte:head>
@@ -12,8 +15,8 @@
 </svelte:head>
 
 <GoogleMaps
-  apiKey={env.PUBLIC_GOOGLE_MAPS_API_KEY}
-  libraries={['geometry', 'places', 'visualization']}
+  apiKey={PUBLIC_GOOGLE_MAPS_API_KEY}
+  libraries={['places', 'visualization']}
 />
 
 <div
@@ -25,7 +28,11 @@
   </main>
 </div>
 
-<Appbar />
+{#if data.session.user}
+  <Appbar />
+{:else}
+  <Footer />
+{/if}
 
 <style>
 </style>

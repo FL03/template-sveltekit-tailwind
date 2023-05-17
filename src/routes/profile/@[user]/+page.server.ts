@@ -1,12 +1,8 @@
 import * as api from '$lib//api/realworld';
+import { firestore } from '$lib/firebase/admin/admin.server';
+import { page_size } from '$lib/constants';
 import { error, fail } from '@sveltejs/kit';
 import { get_articles } from './articles';
-
-/** @type {import('@sveltejs/kit').PageServerLoad} */
-export async function load(event) {
-  const { articles, pages } = await get_articles(event, 'author');
-  return { articles, pages };
-}
 
 /** @type {import('@sveltejs/kit').Actions} */
 export const actions = {

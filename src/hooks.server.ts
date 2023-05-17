@@ -1,5 +1,31 @@
+import { auth, firestore } from '$lib/firebase/admin/admin.server';
+
 /** @type {import('@sveltejs/kit').Handle} */
-export function handle({ event, resolve }) {
+export async function handle({ event, resolve }) {
+  const { cookies, locals } = event;
+
+  locals.user = null; // default if session cookie fails
+  const session = cookies.get('session');
+
+  if (session) {
+    // if session cookie is set, verify it is valid and set the user from it
+    try {
+      const user = await auth.verifySessionCookie(session);
+      locals.user = { email: user.email || '', name: user.name, ...user };
+      firestore
+        .collection('users')
+        .doc(user.uid)
+        .set({ ...locals.user }, { merge: true });
+      // firestore.collection('posts').add({ title: 'sample', author: locals.user})
+    } catch (err) {
+      console.error('error verifying session cookie', session, err);
+    }
+  }
+
+  return resolve(event);
+}
+
+function handler({ event, resolve }) {
   const jwt = event.cookies.get('jwt');
   event.locals.user = jwt ? JSON.parse(atob(jwt)) : null;
 

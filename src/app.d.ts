@@ -8,6 +8,7 @@ declare global {
       user: import('$lib/types').User | null;
     }
     interface PageData {
+      session: import('$lib/types').Session;
       user: import('$lib/types').User | null;
     }
     // interface Platform {}

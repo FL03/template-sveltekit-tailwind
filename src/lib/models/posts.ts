@@ -1,4 +1,9 @@
+import type { FirestoreConverter } from '$lib/firebase/misc';
 import type { Filter, User } from '$lib/types';
+import { GeoPoint, Timestamp } from 'firebase/firestore';
+import type { DocumentSnapshot, SnapshotOptions } from 'firebase/firestore';
+
+import { geohashForLocation } from 'geofire-common';
 
 /**
  * Geolocation information for a post
@@ -7,19 +12,19 @@ import type { Filter, User } from '$lib/types';
  * @param latlng - Google Maps LatLng object
  */
 export declare interface PostGeodata {
-  latlng: google.maps.LatLng;
+  geopoint: GeoPoint;
   geohash: string;
 }
 
 export class PostGeodata implements PostGeodata {
   constructor() {
-    this.latlng = new GeoPoint(0, 0);
+    this.geopoint = new GeoPoint(0, 0);
   }
   set update(geopoint: GeoPoint) {
     this.geopoint = geopoint;
     this.geohash = geohashForLocation([geopoint.latitude, geopoint.longitude]);
   }
-  get lati(): google.maps.LatLng {
+  get latlng(): google.maps.LatLng {
     return new google.maps.LatLng(this.geopoint.latitude, this.geopoint.longitude);
   }
 }
@@ -34,7 +39,7 @@ export declare interface PostMetadata {
 
 export declare interface PostData {
   body: string;
-  createdAt: Date;
+  createdAt: Timestamp;
   description?: string;
   tags: string[];
   title: string;
@@ -79,7 +84,7 @@ export class Post implements Post {
     this.tags = [];
     this.favorites = [];
     this.description = '';
-    this.createdAt = new Date();
+    this.createdAt = Timestamp.now();
   }
   with(obj: Partial<Post>): Post {
     return Object.assign(this, obj);

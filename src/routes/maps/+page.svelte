@@ -1,10 +1,8 @@
 <script lang="ts">
-  import { env } from '$env/dynamic/public';
   import { onMount } from 'svelte';
 
-  import { Map, styles } from '@svkcl/google-maps';
+  import { Map } from '@svkcl/google-maps';
   import { Range, Search, Toggle, Tooltip } from 'flowbite-svelte';
-
   import { Toolbar, ToolbarButton, ToolbarGroup } from 'flowbite-svelte';
 
   /** @type {import('./$types').PageData} */
@@ -69,7 +67,7 @@
   });
 </script>
 
-<Map mapId={env.PUBLIC_GOOGLE_MAPS_ID} --min-height="75vh" bind:map />
+<Map mapId={'f8e8a820f79cae99'} --min-height="75vh" bind:map />
 
 <Toolbar embedded color="none">
   <ToolbarGroup>
