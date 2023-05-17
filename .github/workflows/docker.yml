@@ -14,8 +14,6 @@ on:
 
 env:
   BASENAME: ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}
-  PUBLIC_FIREBASE_CONFIG: ${{ secrets.FIREBASE_CONFIG }}
-  PUBLIC_GOOGLE_MAPS_API_KEY: ${{ secrets.GOOGLE_MAPS_API_KEY }}
 
 jobs:
   publish:
@@ -24,7 +22,11 @@ jobs:
       - uses: actions/checkout@v3
       - name: Publish to Registry
         uses: elgohr/Publish-Docker-Github-Action@v5
+        env:
+          PUBLIC_FIREBASE_CONFIG: ${{ secrets.FIREBASE_CONFIG }}
+          PUBLIC_GOOGLE_MAPS_API_KEY: ${{ secrets.GOOGLE_MAPS_API_KEY }}
         with:
+          buildargs: PUBLIC_FIREBASE_CONFIG,PUBLIC_GOOGLE_MAPS_API_KEY
           dockerfile: Dockerfile
           name: ${{ env.BASENAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
