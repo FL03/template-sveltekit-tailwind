@@ -10,13 +10,6 @@ WORKDIR /workspace
 COPY . .
 RUN npm install && npm run build
 
-FROM builder as development
-
-ENV PUBLIC_GOOGLE_MAPS_API_KEY=""
-
-EXPOSE 3000
-CMD [ "npm", "run", "node:start" ]
-
 FROM node:18-alpine as production
 
 ENV PUBLIC_GOOGLE_MAPS_API_KEY=""
