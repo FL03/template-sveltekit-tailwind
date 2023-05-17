@@ -1,10 +1,10 @@
 import { dev } from '$app/environment';
-import { initializeApp, type AppOptions } from 'firebase-admin/app';
+import { initializeApp } from 'firebase-admin/app';
 import { getAuth } from 'firebase-admin/auth';
 import { getFirestore } from 'firebase-admin/firestore';
 
-
-let firebaseConfig: AppOptions;
+/** @type {import('firebase-admin/app').AppOptions} */
+let firebaseConfig;
 
 if (dev || process.env.NODE_ENV === 'development') {
   process.env['FIREBASE_AUTH_EMULATOR_HOST'] = '127.0.0.1:9099';

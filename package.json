@@ -5,6 +5,9 @@
     "url": "https://github.com/FL03"
   },
   "categories": [],
+  "dependencies": {
+    "firebase-admin": "latest"
+  },
   "description": "A SvelteKit template with TailwindCSS, Flowbite, and Firebase",
   "devDependencies": {
     "@fontsource/fira-mono": "latest",
@@ -26,8 +29,6 @@
     "eslint-config-prettier": "latest",
     "eslint-plugin-svelte3": "latest",
     "firebase": "latest",
-    "firebase-admin": "latest",
-    "firebase-functions": "latest",
     "flowbite": "latest",
     "flowbite-svelte": "latest",
     "flowbite-typography": "latest",

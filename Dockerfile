@@ -23,6 +23,8 @@ RUN rm -rf ./*
 COPY --from=builder /workspace/package.json .
 COPY --from=builder /workspace/build .
 
+RUN npm install --omit=dev
+
 EXPOSE 3000
 
 CMD ["node", "index.js"]
