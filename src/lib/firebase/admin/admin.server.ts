@@ -21,18 +21,18 @@ if (dev) {
   console.log('firebaseConfig (server)', firebaseConfig);
 } else {
   // https://firebase.google.com/docs/reference/admin/node/admin.credential#cert
-  if (env.BUILDER === 'gcp') {
-    firebaseConfig = {
-      credential: applicationDefault(),
-      projectId: 'svkcl-d7eb1',
-      storageBucket: `svkcl-d7eb1.appspot.com`
-    };
-  } else {
+  if (env.GOOGLE_APPLICATION_CREDENTIALS) {
     const serviceAccount = JSON.parse(env.GOOGLE_APPLICATION_CREDENTIALS);
     firebaseConfig = {
       credential: cert(serviceAccount),
       projectId: serviceAccount.project_id,
       storageBucket: `${serviceAccount.project_id}.appspot.com`
+    };
+  } else {
+    firebaseConfig = {
+      credential: applicationDefault(),
+      projectId: 'svkcl-d7eb1',
+      storageBucket: `svkcl-d7eb1.appspot.com`
     };
   }
   
