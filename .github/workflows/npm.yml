@@ -33,6 +33,7 @@ jobs:
         run: npm install
       - name: build
         env:
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
           PUBLIC_FIREBASE_CONFIG: ${{ secrets.FIREBASE_CONFIG }}
           PUBLIC_GOOGLE_MAPS_API_KEY: ${{ secrets.GOOGLE_MAPS_API_KEY }}
         run: npm run build

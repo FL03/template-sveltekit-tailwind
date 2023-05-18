@@ -1,4 +1,6 @@
 import { dev } from '$app/environment';
+import { GOOGLE_APPLICATION_CREDENTIALS } from '$env/static/private';
+import * as admin from 'firebase-admin';
 import { initializeApp } from 'firebase-admin/app';
 import { getAuth } from 'firebase-admin/auth';
 import { getFirestore } from 'firebase-admin/firestore';
@@ -18,13 +20,15 @@ if (dev) {
   };
   console.log('firebaseConfig (server)', firebaseConfig);
 } else {
+  const cred = JSON.parse(GOOGLE_APPLICATION_CREDENTIALS);
   firebaseConfig = {
-    projectId: 'svkcl-d7eb1',
-    storageBucket: 'svkcl-d7eb1.appspot.com'
+    credential: admin.credential.cert(cred),
+    projectId: cred.project_id,
+    storageBucket: cred.project_id + '.appspot.com'
   };
 }
 
 // this is the server-side firebase client
-export const app = initializeApp(firebaseConfig, 'server' + Math.random());
+export const app = admin.initializeApp(firebaseConfig, 'server' + Math.random());
 export const auth = getAuth(app);
 export const firestore = getFirestore(app);
