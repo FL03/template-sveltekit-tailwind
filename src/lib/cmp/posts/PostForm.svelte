@@ -42,7 +42,7 @@
     }}
   />
 
-  <div class="tag-list divide-y">
+  <div class="flex wrap divide-y">
     {#each article.tags as tag, i (tag)}
       <button
         transition:scale|local={{ duration: 200 }}
@@ -62,8 +62,14 @@
   {#each article.tags as tag}
     <Input hidden name="tag" bind:value={tag} />
   {/each}
+  <div>
+    <Label>
+      <Checkbox name="publish" bind:checked={article.published} />
+      Publish Article
+    </Label>
+  </div>
 
-  <button type="submit" on:click|preventDefault={handleSubmit}>Publish</button>
+  <button class="inline-flex rounded px-2 py-1.5" type="submit" on:click|preventDefault={handleSubmit}>Publish</button>
 </form>
 
 <style>

@@ -20,7 +20,15 @@ export class PostGeodata implements PostGeodata {
   constructor() {
     this.geopoint = new GeoPoint(0, 0);
   }
-  set update(geopoint: GeoPoint) {
+  new(geopoint: GeoPoint): PostGeodata {
+    return new PostGeodata().update(geopoint);
+  }
+  update(geopoint: GeoPoint): PostGeodata {
+    this.geopoint = geopoint;
+    this.geohash = geohashForLocation([geopoint.latitude, geopoint.longitude]);
+    return this;
+  }
+  set at(geopoint: GeoPoint) {
     this.geopoint = geopoint;
     this.geohash = geohashForLocation([geopoint.latitude, geopoint.longitude]);
   }
@@ -34,6 +42,7 @@ export declare interface PostMetadata {
   favorites?: string[];
   keywords?: string[];
   link?: string;
+  published: boolean;
   updated?: Date;
 }
 
@@ -85,9 +94,13 @@ export class Post implements Post {
     this.favorites = [];
     this.description = '';
     this.createdAt = Timestamp.now();
+    this.published = false;
   }
-  with(obj: Partial<Post>): Post {
+  update(obj: Partial<Post>): Post {
     return Object.assign(this, obj);
+  }
+  set fromUser(user: User) {
+    this.author.fromUser = user;
   }
 }
 
@@ -105,6 +118,6 @@ export const postConverter: FirestoreConverter<Post> = {
   },
   fromFirestore: (snapshot: DocumentSnapshot, options: SnapshotOptions) => {
     const data = snapshot.data(options);
-    return new Post(data?.author).with({ ...data });
+    return new Post(data?.author).update({ ...data });
   }
 };

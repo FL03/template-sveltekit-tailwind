@@ -10,7 +10,7 @@
     <a href="/">
       <svg
         class="w-6 h-6 mb-1 text-gray-500 dark:text-gray-400 group-hover:text-primary-600 dark:group-hover:text-primary-500"
-        fill="currentColor"
+        fill="none"
         viewBox="0 0 20 20"
         xmlns="http://www.w3.org/2000/svg"
         aria-hidden="true"
@@ -25,12 +25,12 @@
   <BottomNavItem btnName="Maps" appBtnPosition="middle">
     <a href="/maps">
       <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke-width="1.5"
-        stroke="currentColor"
         class="w-6 h-6 mb-1 prose dark:prose-invert group-hover:text-primary-600 dark:group-hover:text-primary-500"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.5"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
       >
         <path
           stroke-linecap="round"
@@ -48,30 +48,30 @@
       btnDefault="inline-flex items-center justify-center w-10 h-10 font-medium bg-primary-600 rounded-full hover:bg-primary-700 group focus:ring-4 focus:ring-primary-300 focus:outline-none dark:focus:ring-primary-800"
       on:click={() => (modalToggle = !modalToggle)}
     >
-      <svg
-        class="w-6 h-6 text-gray-500 dark:text-gray-400"
-        fill="currentColor"
-        viewBox="0 0 20 20"
+      <svg 
+        class="w-6 h-6 mb-1 prose dark:prose-invert group-hover:text-primary-600 dark:group-hover:text-primary-500" 
+        fill="none" 
+        stroke="currentColor" 
+        stroke-width="1.5" 
+        viewBox="0 0 24 24" 
         xmlns="http://www.w3.org/2000/svg"
-        aria-hidden="true"
       >
-        <path
-          clip-rule="evenodd"
-          fill-rule="evenodd"
-          d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
-        />
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
       </svg>
+
       <Tooltip arrow={false}>Create new item</Tooltip>
     </BottomNavItem>
   </div>
   <BottomNavItem btnName="Settings" appBtnPosition="middle">
     <a href="/settings">
       <svg
+        aria-hidden="true"
         class="w-6 h-6 mb-1 text-gray-500 dark:text-gray-400 group-hover:text-primary-600 dark:group-hover:text-primary-500"
-        fill="currentColor"
+        fill="none"
+        stroke="currentColor" 
+        stroke-width="1.5"
         viewBox="0 0 20 20"
         xmlns="http://www.w3.org/2000/svg"
-        aria-hidden="true"
       >
         <path
           d="M5 4a1 1 0 00-2 0v7.268a2 2 0 000 3.464V16a1 1 0 102 0v-1.268a2 2 0 000-3.464V4zM11 4a1 1 0 10-2 0v1.268a2 2 0 000 3.464V16a1 1 0 102 0V8.732a2 2 0 000-3.464V4zM16 3a1 1 0 011 1v7.268a2 2 0 010 3.464V16a1 1 0 11-2 0v-1.268a2 2 0 010-3.464V4a1 1 0 011-1z"
@@ -83,11 +83,11 @@
   <BottomNavItem btnName="Profile" appBtnPosition="right">
     <a href="/profile">
       <svg
+        aria-hidden="true"
         class="w-6 h-6 mb-1 text-gray-500 dark:text-gray-400 group-hover:text-primary-600 dark:group-hover:text-primary-500"
-        fill="currentColor"
+        fill="none"
         viewBox="0 0 20 20"
         xmlns="http://www.w3.org/2000/svg"
-        aria-hidden="true"
       >
         <path
           clip-rule="evenodd"
@@ -105,3 +105,9 @@
     <PostForm user={$page.data.user} />
   </Modal>
 {/if}
+
+<style>
+  svg {
+    margin: 0 1rem 0 0;
+  }
+</style>
