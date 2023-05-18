@@ -17,16 +17,18 @@ env:
 
 jobs:
   publish:
-    env:
-      GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
-      PUBLIC_FIREBASE_CONFIG: ${{ secrets.FIREBASE_CONFIG }}
-      PUBLIC_GOOGLE_MAPS_API_KEY: ${{ secrets.GOOGLE_MAPS_API_KEY }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: Publish to Registry
         uses: elgohr/Publish-Docker-Github-Action@v5
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+          PUBLIC_FIREBASE_CONFIG: ${{ secrets.FIREBASE_CONFIG }}
+          PUBLIC_GOOGLE_MAPS_API_KEY: ${{ secrets.GOOGLE_MAPS_API_KEY }}
         with:
+          buildargs: GOOGLE_APPLICATION_CREDENTIALS,PUBLIC_FIREBASE_CONFIG,PUBLIC_GOOGLE_MAPS_API_KEY
+          context: .
           dockerfile: Dockerfile
           name: ${{ env.BASENAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}

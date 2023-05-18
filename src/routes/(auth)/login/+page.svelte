@@ -22,7 +22,9 @@
   <Input name="email" placeholder="Email" type="email" bind:value={email} />
   <Input name="password" placeholder="Password" type="password" bind:value={password} />
   <div class="w-full divide-y">
-    <LoginWithBtn provider="google" />
+    <LoginWithBtn provider="google">
+      Google
+    </LoginWithBtn>
   </div>
   <Button type="submit">Login</Button>
 </form>

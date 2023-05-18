@@ -28,8 +28,7 @@
         "source": "**",
         "run": {
           "region": "us-central1",
-          "serviceId": "template-sveltekit-tailwind",
-          "pinTag": true
+          "serviceId": "template-sveltekit-tailwind"
         }
       }
     ],
