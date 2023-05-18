@@ -1,6 +1,6 @@
 import { dev } from '$app/environment';
-import { GOOGLE_APPLICATION_CREDENTIALS } from '$env/static/private';
-import { initializeApp, cert } from 'firebase-admin/app';
+import { env } from '$env/dynamic/private';
+import { applicationDefault, initializeApp, cert } from 'firebase-admin/app';
 import { getAuth } from 'firebase-admin/auth';
 import { getFirestore } from 'firebase-admin/firestore';
 
@@ -21,12 +21,21 @@ if (dev) {
   console.log('firebaseConfig (server)', firebaseConfig);
 } else {
   // https://firebase.google.com/docs/reference/admin/node/admin.credential#cert
-  const cred = JSON.parse(GOOGLE_APPLICATION_CREDENTIALS);
-  firebaseConfig = {
-    credential: cert(cred),
-    projectId: cred.project_id,
-    storageBucket: cred.project_id + '.appspot.com'
-  };
+  if (env.BUILDER === 'gcp') {
+    firebaseConfig = {
+      credential: applicationDefault(),
+      projectId: 'svkcl-d7eb1',
+      storageBucket: `svkcl-d7eb1.appspot.com`
+    };
+  } else {
+    const serviceAccount = JSON.parse(env.GOOGLE_APPLICATION_CREDENTIALS);
+    firebaseConfig = {
+      credential: cert(serviceAccount),
+      projectId: serviceAccount.project_id,
+      storageBucket: `${serviceAccount.project_id}.appspot.com`
+    };
+  }
+  
 }
 
 // this is the server-side firebase client
