@@ -19,7 +19,7 @@
 </script>
 
 <svelte:head>
-  <title>{data.profile.username} • Conduit</title>
+  <title>{data.profile.username || data.profile.name} • Profile</title>
 </svelte:head>
 
 <Card>
@@ -33,12 +33,12 @@
   </div>
   <div class="flex flex-col items-center pb-4">
     <Avatar size="lg" src={data.profile.image} />
-    <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">{data.profile.username}</h5>
+    <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">{data.profile.name}</h5>
     {#if data.profile.bio}
       <span class="text-sm text-gray-500 dark:text-gray-400">{data.profile.bio}</span>
     {/if}
 
-    {#if data.profile.username === data.user?.username}
+    {#if data.profile.uid === data.user?.uid}
       <a href="/settings" class="btn btn-sm btn-outline-secondary action-btn">
         <i class="ion-gear-a" />
         Settings
@@ -46,7 +46,7 @@
     {:else if data.user}
       <form
         method="POST"
-        action="/profile/@{data.profile.username}?/toggleFollow"
+        action="/profile/@{data.profile.uid}?/toggleFollow"
         use:enhance={({ form }) => {
           // optimistic UI
           data.profile.following = !data.profile.following;
@@ -80,14 +80,14 @@
 <div class="articles-toggle">
   <ul class="nav nav-pills outline-active">
     <li class="nav-item">
-      <a href="/profile/@{data.profile.username}" class="nav-link" class:active={!is_favorites}>
+      <a href="/profile/@{data.profile.uid}" class="nav-link" class:active={!is_favorites}>
         Articles
       </a>
     </li>
 
     <li class="nav-item">
       <a
-        href="/profile/@{data.profile.username}/favorites"
+        href="/profile/@{data.profile.uid}/favorites"
         class="nav-link"
         class:active={is_favorites}
       >
