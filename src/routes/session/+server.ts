@@ -27,7 +27,7 @@ export const DELETE: RequestHandler = async ({ cookies }) => {
   return json(_getSession(null));
 };
 
-export function _getSession(user: DecodedIdToken | null) {
+export function _getSession(user: any | null) {
   if (user) {
     return {
       user: {
