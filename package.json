@@ -25,6 +25,7 @@
     "@types/google.maps": "latest",
     "autoprefixer": "latest",
     "classnames": "latest",
+    "concurrently": "latest",
     "eslint": "latest",
     "eslint-config-prettier": "latest",
     "eslint-plugin-svelte3": "latest",
@@ -64,6 +65,7 @@
     "lint": "prettier --plugin-search-dir . --check . && eslint .",
     "format": "prettier --plugin-search-dir . --write .",
     "preview": "vite preview --host --port 3000",
+    "start": "concurrently --kill-others \"npm run dev\" \"npm run firebase:emulate\"",
     "firebase:deploy": "firebase deploy --only hosting",
     "firebase:emulate": "firebase emulators:start --only auth,firestore",
     "node:start": "node ./build/index.js"

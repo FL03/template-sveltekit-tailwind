@@ -41,7 +41,4 @@ export class User implements User {
     this.email = '';
     this.uid = '';
   }
-  set with(val: Partial<User>) {
-    Object.assign(this, val);
-  }
 }

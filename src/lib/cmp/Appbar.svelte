@@ -3,6 +3,8 @@
   import { BottomNav, BottomNavItem, Modal, Tooltip } from 'flowbite-svelte';
   import PostForm from '$lib/cmp/posts/PostForm.svelte';
   let modalToggle = false;
+
+  $: user = $page.data.session.user;
 </script>
 
 <BottomNav position="sticky" navType="border" innerDiv="grid-cols-5">
@@ -106,9 +108,9 @@
   </BottomNavItem>
 </BottomNav>
 
-{#if $page.data.user}
+{#if user}
   <Modal autoclose color="form" size="lg" title="New Post" bind:open={modalToggle}>
-    <PostForm user={$page.data.user} />
+    <PostForm {user} />
   </Modal>
 {/if}
 

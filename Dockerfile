@@ -15,6 +15,7 @@ FROM node:18-slim as production
 RUN apt-get update -y && apt-get upgrade -y
 
 ENV POST=3000 \
+    PUBLIC_FIREBASE_CONFIG='{"apiKey": "demo","authDomain": "demo.firebaseapp.com","projectId": "svkcl-d7eb1","storageBucket": "demo.appspot.com"}' \
     PUBLIC_GOOGLE_MAPS_API_KEY=""
 
 WORKDIR /app
