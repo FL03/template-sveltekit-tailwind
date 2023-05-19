@@ -1,6 +1,5 @@
 <script lang="ts">
   import { page } from '$app/stores';
-  import { session } from '$lib/firebase/stores';
   import { Navbar, NavBrand, NavLi, NavUl, NavHamburger } from 'flowbite-svelte';
   import { Dropdown, DropdownItem, DropdownHeader, DropdownDivider } from 'flowbite-svelte';
   import { Avatar, DarkMode } from 'flowbite-svelte';
@@ -8,7 +7,7 @@
   export let banner: string = 'Template';
   export let logo = 'https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600';
 
-  $: user = $session.user;
+  $: user = $page.data.session.user;
 </script>
 
 <Navbar
