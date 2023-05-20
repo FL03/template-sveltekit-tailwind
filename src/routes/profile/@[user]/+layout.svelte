@@ -16,6 +16,7 @@
   export let data;
 
   $: is_favorites = $page.route.id === '/profile/@[user]/favorites';
+  $: user = $page.data.session.user;
 </script>
 
 <svelte:head>
@@ -38,12 +39,12 @@
       <span class="text-sm text-gray-500 dark:text-gray-400">{data.profile.bio}</span>
     {/if}
 
-    {#if data.profile.uid === data.user?.uid}
+    {#if data.profile.uid === user?.uid}
       <a href="/settings" class="btn btn-sm btn-outline-secondary action-btn">
         <i class="ion-gear-a" />
         Settings
       </a>
-    {:else if data.user}
+    {:else if user}
       <form
         method="POST"
         action="/profile/@{data.profile.uid}?/toggleFollow"

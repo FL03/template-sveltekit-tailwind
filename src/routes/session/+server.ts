@@ -1,7 +1,9 @@
-import { json, type RequestHandler } from '@sveltejs/kit';
+import { json } from '@sveltejs/kit';
 import { dev } from '$app/environment';
 import { auth } from '$lib/firebase/admin/admin.server';
-import type { User } from '$lib/types/users';
+
+import type { RequestHandler } from '@sveltejs/kit';
+import type { DecodedIdToken } from 'firebase-admin/auth';
 
 const WEEK_IN_SECONDS = 60 * 60 * 24 * 7;
 const WEEK_IN_MILLISECONDS = WEEK_IN_SECONDS * 1000;
@@ -15,7 +17,7 @@ export const POST: RequestHandler = async ({ request, cookies }) => {
   const options = { maxAge: WEEK_IN_SECONDS, httpOnly: true, secure: !dev };
   cookies.set('session', sessionCookie, options);
 
-  return json(_getSession({ ...user, name: user.name, email: user.email || '' }));
+  return json(_getSession(user));
 };
 
 // DELETE clears the session cookie
@@ -25,13 +27,15 @@ export const DELETE: RequestHandler = async ({ cookies }) => {
   return json(_getSession(null));
 };
 
-export function _getSession(user: User | null) {
+export function _getSession(user: any | null) {
   if (user) {
     return {
       user: {
-        ...user,
-        name: user.name,
-        email: user.email || ''
+        email_verified: user.email_verified || false,
+        phone_number: user.phone_number,
+        picture: user.picture,
+        username: user.username || '',
+        ...user
       }
     };
   }

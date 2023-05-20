@@ -16,18 +16,10 @@ export async function handle({ event, resolve }) {
         .collection('users')
         .doc(user.uid)
         .set({ ...locals.user }, { merge: true });
-      // firestore.collection('posts').add({ title: 'sample', author: locals.user})
     } catch (err) {
       console.error('error verifying session cookie', session, err);
     }
   }
-
-  return resolve(event);
-}
-
-function handler({ event, resolve }) {
-  const jwt = event.cookies.get('jwt');
-  event.locals.user = jwt ? JSON.parse(atob(jwt)) : null;
 
   return resolve(event);
 }

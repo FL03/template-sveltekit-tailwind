@@ -1,7 +1,7 @@
 import { browser, dev } from '$app/environment';
 // import { PUBLIC_FIREBASE_CONFIG } from '$env/static/public';
 import { readable } from 'svelte/store';
-import { devConfig, firebaseConfig } from '$lib/firebase/firebase.config.js';
+import { devConfig, firebaseConfig } from '$lib/firebase/firebase.config';
 
 // const firebaseConfig: FirebaseOptions = JSON.parse(PUBLIC_FIREBASE_CONFIG);
 

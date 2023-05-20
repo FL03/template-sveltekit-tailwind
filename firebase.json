@@ -32,6 +32,7 @@
         }
       }
     ],
+    "site": "template-sveltekit-tailwind",
     "trailingSlash": false
   }
 }
