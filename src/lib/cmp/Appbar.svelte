@@ -1,7 +1,8 @@
-<script lang="ts">
+<script>
   import { page } from '$app/stores';
   import { BottomNav, BottomNavItem, Modal, Tooltip } from 'flowbite-svelte';
   import PostForm from '$lib/cmp/posts/PostForm.svelte';
+
   let modalToggle = false;
 
   $: user = $page.data.session.user;
@@ -14,7 +15,7 @@
         aria-hidden="true"
         class="w-6 h-6 mb-1 text-gray-500 dark:text-gray-400 group-hover:text-primary-600 dark:group-hover:text-primary-500"
         fill="none"
-        stroke="currentColor" 
+        stroke="currentColor"
         stroke-width="1.5"
         viewBox="0 0 20 20"
         xmlns="http://www.w3.org/2000/svg"
@@ -53,13 +54,13 @@
       btnDefault="inline-flex items-center justify-center w-10 h-10 font-medium bg-primary-600 rounded-full hover:bg-primary-700 group focus:ring-4 focus:ring-primary-300 focus:outline-none dark:focus:ring-primary-800"
       on:click={() => (modalToggle = !modalToggle)}
     >
-      <svg 
+      <svg
         aria-hidden="true"
-        class="w-6 h-6 mb-1 prose dark:prose-invert group-hover:text-primary-600 dark:group-hover:text-primary-500" 
-        fill="none" 
-        stroke="currentColor" 
-        stroke-width="1.5" 
-        viewBox="0 0 24 24" 
+        class="w-6 h-6 mb-1 prose dark:prose-invert group-hover:text-primary-600 dark:group-hover:text-primary-500"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.5"
+        viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
@@ -74,7 +75,7 @@
         aria-hidden="true"
         class="w-6 h-6 mb-1 text-gray-500 dark:text-gray-400 group-hover:text-primary-600 dark:group-hover:text-primary-500"
         fill="none"
-        stroke="currentColor" 
+        stroke="currentColor"
         stroke-width="1.5"
         viewBox="0 0 20 20"
         xmlns="http://www.w3.org/2000/svg"
@@ -92,7 +93,7 @@
         aria-hidden="true"
         class="w-6 h-6 mb-1 text-gray-500 dark:text-gray-400 group-hover:text-primary-600 dark:group-hover:text-primary-500"
         fill="none"
-        stroke="currentColor" 
+        stroke="currentColor"
         stroke-width="1.5"
         viewBox="0 0 20 20"
         xmlns="http://www.w3.org/2000/svg"

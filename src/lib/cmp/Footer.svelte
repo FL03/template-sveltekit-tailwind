@@ -1,9 +1,12 @@
-<script lang="ts">
+<script>
   import { Footer, FooterCopyright, FooterLinkGroup, FooterLink } from 'flowbite-svelte';
+
+  export let company = 'Puzzled';
+  export let year = new Date().getFullYear();
 </script>
 
-<Footer class="absolute bottom-0 left-0 z-20 w-full">
-  <FooterCopyright href="/" by="Gambit™" year={2023} />
+<Footer class="sticky bottom-0 left-0 z-20 w-full">
+  <FooterCopyright href="/" by="{company}™" {year} />
   <FooterLinkGroup
     ulClass="flex flex-wrap items-center mt-3 text-sm prose dark:prose-invertsm:mt-0"
   >

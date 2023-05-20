@@ -1,10 +1,9 @@
 import { fail, redirect } from '@sveltejs/kit';
-import * as api from '$lib/api/realworld';
 
 /** @type {import('@sveltejs/kit').PageServerLoad} */
 export async function load({ parent }) {
-  const { user } = await parent();
-  if (user) throw redirect(307, '/');
+  const { session } = await parent();
+  if (session.user) throw redirect(307, '/');
 }
 
 /** @type {import('@sveltejs/kit').Actions} */
@@ -18,11 +17,13 @@ export const actions = {
       password: data.get('password')
     };
 
-    const body = await api.post('users', { user });
+    const body = {
+      user
+    };
 
-    if (body.errors) {
-      return fail(401, body);
-    }
+    // if (body.errors) {
+    //   return fail(401, body);
+    // }
 
     const value = btoa(JSON.stringify(body.user));
     cookies.set('jwt', value, { path: '/' });

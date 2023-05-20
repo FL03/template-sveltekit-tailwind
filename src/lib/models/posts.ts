@@ -1,4 +1,4 @@
-import type { FirestoreConverter } from '$lib/firebase/misc';
+import type { FirestoreConverter } from '$lib/firebase/utils';
 import type { Filter, User } from '$lib/types';
 import { GeoPoint, Timestamp } from 'firebase/firestore';
 import type { DocumentSnapshot, SnapshotOptions } from 'firebase/firestore';

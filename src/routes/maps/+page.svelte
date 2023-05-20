@@ -4,6 +4,7 @@
   import { Map } from '@svkcl/google-maps';
   import { Range, Search, Toggle, Tooltip } from 'flowbite-svelte';
   import { Toolbar, ToolbarButton, ToolbarGroup } from 'flowbite-svelte';
+  import { getPoints } from '$lib/heatmap';
 
   /** @type {import('./$types').PageData} */
   export let data;
@@ -59,7 +60,7 @@
   onMount(() => {
     infowindow = new google.maps.InfoWindow();
     heatmap = new google.maps.visualization.HeatmapLayer({
-      data: data.heatmap.data,
+      data: getPoints(),
       map,
       radius
     });

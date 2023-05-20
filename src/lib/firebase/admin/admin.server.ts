@@ -35,7 +35,6 @@ if (dev) {
       storageBucket: `svkcl-d7eb1.appspot.com`
     };
   }
-  
 }
 
 // this is the server-side firebase client

@@ -3,15 +3,16 @@
 
 declare global {
   namespace App {
-    // interface Error {}
+    interface Error {}
     interface Locals {
+      firebase: import('firebase/auth').User | null;
       user: import('$lib/types').User | null;
     }
     interface PageData {
       session: import('$lib/types').Session;
-      user: import('$lib/types').User | null;
+      user: import('firebase/auth').User | null;
     }
-    // interface Platform {}
+    interface Platform {}
   }
   namespace svelteHTML {
     interface HTMLAttributes {

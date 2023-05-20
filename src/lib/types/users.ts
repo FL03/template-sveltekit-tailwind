@@ -1,4 +1,4 @@
-import type { Filter } from '$lib/types/filters';
+import type { Filter } from './filters';
 
 export declare interface UserFilter extends Filter {
   name?: string;
@@ -11,6 +11,16 @@ export declare interface HumanName {
   suffix?: string;
   prefix?: string;
   full(): string;
+}
+
+export class HumanName implements HumanName {
+  constructor() {
+    this.first = '';
+    this.last = '';
+    this.middle = '';
+    this.suffix = '';
+    this.prefix = '';
+  }
 }
 
 export declare interface UserName {

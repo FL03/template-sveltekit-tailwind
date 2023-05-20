@@ -1,10 +1,11 @@
 import { browser } from '$app/environment';
 import { derived, writable } from 'svelte/store';
-import type { Firestore } from 'firebase/firestore';
-
 import { app, auth } from '$lib/firebase/stores';
-import type { Post, PostFilter } from '$lib/models/posts';
+import { Post } from '$lib/models/posts';
 import { page_size } from '$lib/constants';
+
+import type { PostFilter } from '$lib/models/posts';
+import type { Firestore } from 'firebase/firestore';
 
 /**
  * A custom store for managing the order filter
@@ -57,7 +58,7 @@ function createPosts() {
           q = query(q, limit($filter.limit));
 
           unsubscribe = onSnapshot(q, (snap) =>
-            set(snap.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+            set(snap.docs.map((doc) => new Post(doc.data().author).update({ ...doc.data() })))
           );
         } else {
           set([]);

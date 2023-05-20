@@ -9,6 +9,7 @@
 
   export let user: import('$lib/types').User;
   export let article: Post = new Post(user);
+
   async function handleSubmit() {
     await firestore.create(`posts`, { ...article });
   }
@@ -69,7 +70,11 @@
     </Label>
   </div>
 
-  <button class="inline-flex rounded px-2 py-1.5" type="submit" on:click|preventDefault={handleSubmit}>Publish</button>
+  <button
+    class="inline-flex rounded px-2 py-1.5"
+    type="submit"
+    on:click|preventDefault={handleSubmit}>Publish</button
+  >
 </form>
 
 <style>
