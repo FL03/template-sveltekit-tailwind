@@ -6,7 +6,7 @@
   },
   "categories": [],
   "dependencies": {
-    "firebase-admin": "latest"
+    "cookie": "latest"
   },
   "description": "A SvelteKit template with TailwindCSS, Flowbite, and Firebase",
   "devDependencies": {
@@ -30,8 +30,10 @@
     "eslint-config-prettier": "latest",
     "eslint-plugin-svelte3": "latest",
     "firebase": "latest",
+    "firebase-admin": "latest",
     "flowbite": "latest",
     "flowbite-svelte": "latest",
+    "flowbite-svelte-blocks": "latest",
     "flowbite-typography": "latest",
     "geofire-common": "latest",
     "marked": "latest",
@@ -45,7 +47,7 @@
     "tailwindcss": "latest",
     "ts-node": "latest",
     "tslib": "latest",
-    "typescript": "latest",
+    "typescript": "beta",
     "vite": "beta"
   },
   "engines": {
@@ -54,7 +56,7 @@
   "keywords": [],
   "license": "Apache-2.0",
   "main": "build/index.js",
-  "name": "@template/sveltekit-tailwind",
+  "name": "@pzzld/template-sveltekit-tailwind",
   "readme": "https://github.com/FL03/template-sveltekit-tailwind/#README",
   "repository": "https://github.com/FL03/template-sveltekit-tailwind",
   "scripts": {
@@ -65,7 +67,7 @@
     "lint": "prettier --plugin-search-dir . --check . && eslint .",
     "format": "prettier --plugin-search-dir . --write .",
     "preview": "vite preview --host --port 3000",
-    "start": "concurrently --kill-others \"npm run dev\" \"npm run firebase:emulate\"",
+    "dev:firebase": "concurrently --kill-others \"npm run dev\" \"npm run firebase:emulate\"",
     "firebase:deploy": "firebase deploy --only hosting",
     "firebase:emulate": "firebase emulators:start --only auth,firestore",
     "node:start": "node ./build/index.js"
