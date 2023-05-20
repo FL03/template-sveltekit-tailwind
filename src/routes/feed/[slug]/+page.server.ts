@@ -1,47 +1,42 @@
-import * as api from '$lib/api/realworld';
 import { error, redirect } from '@sveltejs/kit';
 
-/** @type {import('@sveltejs/kit').PageServerLoad} */
-export async function load({ locals, params }) {
-  const [{ article }, { comments }] = await Promise.all([
-    api.get(`articles/${params.slug}`, locals.user?.token),
-    api.get(`articles/${params.slug}/comments`, locals.user?.token)
-  ]);
+import { firestore } from '$lib/firebase/admin/admin.server';
+import { postConverter } from '$lib/models/posts';
 
-  return { article, comments };
+/** @type { import('./$types').PageServerLoad } */
+export async function load({ params }) {
+  const post = await firestore.collection('posts').doc(`${params.slug}`).get();
+  const cmt = await firestore.collection(`posts/${params.slug}/comments`).get();
+
+  if (!post.data()) throw error(404);
+
+  return { article: { ...post.data() }, comments: cmt.docs.map((c) => ({ ...c.data() })) };
 }
 
-/** @type {import('@sveltejs/kit').Actions} */
+/** @type { import('./$types').Actions } */
 export const actions = {
   createComment: async ({ locals, params, request }) => {
     if (!locals.user) throw error(401);
 
     const data = await request.formData();
 
-    await api.post(
-      `articles/${params.slug}/comments`,
-      {
-        comment: {
-          body: data.get('comment')
-        }
-      },
-      locals.user.token
-    );
+    await firestore.collection(`posts/${params.slug}/comments`).add({ body: data.get('comment') });
   },
 
   deleteComment: async ({ locals, params, url }) => {
     if (!locals.user) throw error(401);
 
     const id = url.searchParams.get('id');
-    const result = await api.del(`articles/${params.slug}/comments/${id}`, locals.user.token);
+    // TODO: check if comment belongs to user
+    await firestore.collection(`posts/${params.slug}/comments`).doc(`${id}`).delete();
 
-    if (result.error) throw error(result.status, result.error);
+    // if (result.error) throw error(result.status, result.error);
   },
 
   deleteArticle: async ({ locals, params }) => {
     if (!locals.user) throw error(401);
 
-    await api.del(`articles/${params.slug}`, locals.user.token);
+    await firestore.collection(`posts`).doc(`${params.slug}`).delete();
     throw redirect(307, '/');
   },
 
@@ -52,11 +47,17 @@ export const actions = {
     const favorited = data.get('favorited') !== 'on';
 
     if (favorited) {
-      api.post(`articles/${params.slug}/favorite`, null, locals.user.token);
+      await firestore
+        .collection(`users`)
+        .doc(`${locals.user.uid}`)
+        .set({ favorites: { [params.slug]: true } }, { merge: true });
     } else {
-      api.del(`articles/${params.slug}/favorite`, locals.user.token);
+      await firestore
+        .collection(`users`)
+        .doc(`${locals.user.uid}`)
+        .set({ favorites: { [params.slug]: null } }, { merge: true });
     }
 
-    throw redirect(307, request.headers.get('referer') ?? `/article/${params.slug}`);
+    throw redirect(307, request.headers.get('referer') ?? `/feed/${params.slug}`);
   }
 };
