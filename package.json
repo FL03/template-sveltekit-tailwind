@@ -6,8 +6,7 @@
   },
   "categories": [],
   "dependencies": {
-    "cookie": "latest",
-    "firebase-admin": "latest"
+    "cookie": "latest"
   },
   "description": "A SvelteKit template with TailwindCSS, Flowbite, and Firebase",
   "devDependencies": {
@@ -23,7 +22,9 @@
     "@svkcl/google-maps": "latest",
     "@tailwindcss/forms": "latest",
     "@tailwindcss/typography": "latest",
+    "@types/cookie": "latest",
     "@types/google.maps": "latest",
+    "@types/node": "latest",
     "autoprefixer": "latest",
     "classnames": "latest",
     "concurrently": "latest",
@@ -31,6 +32,7 @@
     "eslint-config-prettier": "latest",
     "eslint-plugin-svelte3": "latest",
     "firebase": "latest",
+    "firebase-admin": "latest",
     "flowbite": "latest",
     "flowbite-svelte": "latest",
     "flowbite-svelte-blocks": "latest",
