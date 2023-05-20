@@ -6,7 +6,12 @@ import { vitePreprocess } from '@sveltejs/kit/vite';
 /** @type {import('@sveltejs/kit').Config} */
 export default {
   kit: {
-    adapter: multiAdapter([adapterNode(), adapterVercel()])
+    adapter: multiAdapter([
+      adapterNode({
+        polyfill: true
+      }), 
+      adapterVercel()
+    ])
   },
   preprocess: vitePreprocess({
     postcss: true
