@@ -1,12 +1,13 @@
 <script>
   import '$lib/assets/css/app.css';
   import { Appbar, Footer, Navbar } from '$lib/cmp';
+  import { session } from '$lib/firebase/stores';
   import { GoogleMaps } from '@svkcl/google-maps';
 
   /** @type {import('./$types').PageData}*/
   export let data;
 
-  let user = data.session.user;
+  const user = $session.user;
 </script>
 
 <svelte:head>
