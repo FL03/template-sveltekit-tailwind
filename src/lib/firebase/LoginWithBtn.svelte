@@ -14,11 +14,14 @@
   }
 </script>
 
-<Button color="primary" on:click={handleClick}>
+<Button color="dark" pill on:click={handleClick}>
   {#if $session.user}
     Sign out
   {:else}
-    Sign in
+    <slot>
+      <i class="ion-social-{provider}" />
+      Sign in with {provider}
+    </slot>
   {/if}
 </Button>
 

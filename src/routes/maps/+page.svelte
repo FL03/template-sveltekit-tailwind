@@ -4,10 +4,9 @@
   import { Map } from '@svkcl/google-maps';
   import { Range, Search, Toggle, Tooltip } from 'flowbite-svelte';
   import { Toolbar, ToolbarButton, ToolbarGroup } from 'flowbite-svelte';
-  import { getPoints } from '$lib/heatmap';
+  import { getPoints, heatmapGradients } from '$lib/heatmap';
 
-  /** @type {import('./$types').PageData} */
-  export let data;
+  export let data: import('./$types').PageData;
 
   // Values
   let opacity: number = 0.2;
@@ -20,7 +19,7 @@
   let service: google.maps.places.PlacesService;
 
   function changeGradient(): void {
-    heatmap.set('gradient', heatmap.get('gradient') ? null : data.heatmap.gradients);
+    heatmap.set('gradient', heatmap.get('gradient') ? null : heatmapGradients);
   }
 
   function adjustRadius(): void {
@@ -79,10 +78,7 @@
   <ToolbarGroup>
     <Range bind:value={radius} min={0} max={50} on:change={adjustRadius} />
     <Tooltip arrow={false}>Update the radius of the entries</Tooltip>
-    <ToolbarButton
-      on:click={() =>
-        heatmap.set('gradient', heatmap.get('gradient') ? null : data.heatmap.gradients)}
-    >
+    <ToolbarButton on:click={changeGradient}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"

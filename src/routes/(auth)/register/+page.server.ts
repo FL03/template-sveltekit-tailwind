@@ -1,12 +1,13 @@
 import { fail, redirect } from '@sveltejs/kit';
 
-/** @type {import('@sveltejs/kit').PageServerLoad} */
-export async function load({ parent }) {
-  const { session } = await parent();
-  if (session.user) throw redirect(307, '/');
+/** @type { import('./$types').PageServerLoad } */
+export async function load({ locals }) {
+  return {
+    user: locals.user
+  }
 }
 
-/** @type {import('@sveltejs/kit').Actions} */
+/** @type {import('./$types').Actions} */
 export const actions = {
   default: async ({ cookies, request }) => {
     const data = await request.formData();

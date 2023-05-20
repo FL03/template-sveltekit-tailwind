@@ -14,6 +14,9 @@
   } from 'flowbite-svelte';
   import { firestore } from '$lib/firebase/stores';
 
+  // Bindings
+  let horizontal = false;
+  // Values
   let profile: import('$lib/types/users').User | undefined;
 
   /** @type {import('./$types').PageData} */
@@ -33,7 +36,7 @@
 </svelte:head>
 
 {#if profile}
-  <Card>
+  <Card {horizontal}>
     <div class="flex justify-end">
       <MenuButton />
       <Dropdown class="w-36">

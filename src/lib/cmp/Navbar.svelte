@@ -3,6 +3,7 @@
   import { Navbar, NavBrand, NavLi, NavUl, NavHamburger } from 'flowbite-svelte';
   import { Dropdown, DropdownItem, DropdownHeader, DropdownDivider } from 'flowbite-svelte';
   import { Avatar, DarkMode } from 'flowbite-svelte';
+  import { auth } from '$lib/firebase/stores';
 
   export let banner = 'Template';
   export let logo = 'https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600';
@@ -71,7 +72,9 @@
     {/if}
     <DropdownDivider />
     {#if user}
-      <DropdownItem>Sign out</DropdownItem>
+      <DropdownItem on:click={auth.signOut}>
+        Logout
+      </DropdownItem>
     {:else}
       <DropdownItem href="/login">Sign in</DropdownItem>
       <DropdownItem href="/register">Sign up</DropdownItem>
