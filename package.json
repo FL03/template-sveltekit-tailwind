@@ -6,7 +6,8 @@
   },
   "categories": [],
   "dependencies": {
-    "cookie": "latest"
+    "cookie": "latest",
+    "firebase-admin": "latest"
   },
   "description": "A SvelteKit template with TailwindCSS, Flowbite, and Firebase",
   "devDependencies": {
@@ -30,7 +31,6 @@
     "eslint-config-prettier": "latest",
     "eslint-plugin-svelte3": "latest",
     "firebase": "latest",
-    "firebase-admin": "latest",
     "flowbite": "latest",
     "flowbite-svelte": "latest",
     "flowbite-svelte-blocks": "latest",
