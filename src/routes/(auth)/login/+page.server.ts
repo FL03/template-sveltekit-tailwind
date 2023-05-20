@@ -1,10 +1,9 @@
 import { fail, redirect } from '@sveltejs/kit';
 
 /** @type { import('./$types').PageServerLoad } */
-export async function load({ locals }) {
-  return {
-    user: locals.user
-  };
+export async function load({ locals, parent }) {
+  const { session } = await parent();
+  if (session.user) throw redirect(307, '/');
 }
 
 /** @type { import('./$types').Actions } */
