@@ -19,13 +19,12 @@
   /** @type {import('./$types').PageData} */
   export let data;
 
+  // Data
+  const { profile, session } = data;
+
+  const user = session.user;
   $: is_favorites = $page.route.id === '/profile/@[user]/favorites';
-  $: profile = data.profile;
-  $: user = $page.data.session.user;
-
-  onMount(async () => {
-
-  });
+  onMount(async () => {});
 </script>
 
 <svelte:head>
@@ -90,9 +89,7 @@
 <div class="articles-toggle">
   <ul class="nav nav-pills outline-active">
     <li class="nav-item">
-      <a href="/profile/@{profile.uid}" class="nav-link" class:active={!is_favorites}>
-        Articles
-      </a>
+      <a href="/profile/@{profile.uid}" class="nav-link" class:active={!is_favorites}> Articles </a>
     </li>
 
     <li class="nav-item">
@@ -102,7 +99,6 @@
     </li>
   </ul>
 </div>
-
 
 <section class="py-2 w-full items-center justify-center">
   <slot />

@@ -1,12 +1,12 @@
 <script lang="ts">
   import { onMount } from 'svelte';
 
-  import { Map } from '@svkcl/google-maps';
+  import { Map, styles } from '@svkcl/google-maps';
   import { Range, Search, Toggle, Tooltip } from 'flowbite-svelte';
   import { Toolbar, ToolbarButton, ToolbarGroup } from 'flowbite-svelte';
   import { getPoints, heatmapGradients } from '$lib/heatmap';
 
-  export let data: import('./$types').PageData;
+  // export let data: import('./$types').PageData;
 
   // Values
   let opacity: number = 0.2;
@@ -67,7 +67,7 @@
   });
 </script>
 
-<Map mapId={'f8e8a820f79cae99'} --min-height="75vh" bind:map />
+<Map styles={styles.darkModeMapStyle} --min-height="75vh" bind:map />
 
 <Toolbar embedded color="none">
   <ToolbarGroup>

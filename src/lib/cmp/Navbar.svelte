@@ -1,5 +1,4 @@
-<script>
-  import { page } from '$app/stores';
+<script lang="ts">
   import { Navbar, NavBrand, NavLi, NavUl, NavHamburger } from 'flowbite-svelte';
   import { Dropdown, DropdownItem, DropdownHeader, DropdownDivider } from 'flowbite-svelte';
   import { Avatar, DarkMode } from 'flowbite-svelte';
@@ -7,8 +6,7 @@
 
   export let banner = 'Template';
   export let logo = 'https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600';
-
-  $: user = $page.data.session.user;
+  export let user: import('$lib/types/users').User | null = null;
 </script>
 
 <Navbar
@@ -72,9 +70,7 @@
     {/if}
     <DropdownDivider />
     {#if user}
-      <DropdownItem on:click={auth.signOut}>
-        Logout
-      </DropdownItem>
+      <DropdownItem on:click={auth.signOut}>Logout</DropdownItem>
     {:else}
       <DropdownItem href="/login">Sign in</DropdownItem>
       <DropdownItem href="/register">Sign up</DropdownItem>

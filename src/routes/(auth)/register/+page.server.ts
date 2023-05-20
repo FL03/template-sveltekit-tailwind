@@ -4,7 +4,7 @@ import { fail, redirect } from '@sveltejs/kit';
 export async function load({ locals }) {
   return {
     user: locals.user
-  }
+  };
 }
 
 /** @type {import('./$types').Actions} */

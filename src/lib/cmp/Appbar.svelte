@@ -1,11 +1,10 @@
-<script>
-  import { page } from '$app/stores';
+<script lang="ts">
   import { BottomNav, BottomNavItem, Modal, Tooltip } from 'flowbite-svelte';
   import PostForm from '$lib/cmp/posts/PostForm.svelte';
 
+  export let user: import('$lib/types/users').User;
+  // Bindings
   let modalToggle = false;
-
-  $: user = $page.data.session.user;
 </script>
 
 <BottomNav position="sticky" navType="border" innerDiv="grid-cols-5">
@@ -56,7 +55,7 @@
     >
       <svg
         aria-hidden="true"
-        class="w-6 h-6 mb-1 prose dark:prose-invert group-hover:text-primary-600 dark:group-hover:text-primary-500"
+        class="w-6 h-6 mb-1 text-gray-500 dark:text-gray-400 group-hover:text-primary-600 dark:group-hover:text-primary-500"
         fill="none"
         stroke="currentColor"
         stroke-width="1.5"
@@ -109,11 +108,9 @@
   </BottomNavItem>
 </BottomNav>
 
-{#if user}
-  <Modal autoclose color="form" size="lg" title="New Post" bind:open={modalToggle}>
-    <PostForm {user} />
-  </Modal>
-{/if}
+<Modal autoclose color="form" size="lg" title="New Post" bind:open={modalToggle}>
+  <PostForm {user} />
+</Modal>
 
 <style>
   svg {

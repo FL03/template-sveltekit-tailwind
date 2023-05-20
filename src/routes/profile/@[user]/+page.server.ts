@@ -1,13 +1,6 @@
 import { firestore } from '$lib/firebase/admin/admin.server';
 import { error, fail } from '@sveltejs/kit';
 
-/** @type { import('./$types').PageServerLoad } */
-export async function load({ params }) {
-  return {
-    params
-  };
-}
-
 /** @type { import('./$types').Actions } */
 export const actions = {
   toggleFollow: async ({ locals, params, request }) => {

@@ -1,5 +1,5 @@
 <script>
-  import { onMount } from "svelte";
+  import { onMount } from 'svelte';
   import { page } from '$app/stores';
   import { page_size } from '$lib/constants';
   import { firestore } from '$lib/firebase/stores';
@@ -10,7 +10,7 @@
 
   onMount(async () => {
     const favorites = await firestore.getDocuments(`users/${$page.params.user}/favorites`);
-    articles = favorites.docs.map(doc => ({...doc.data()}));
+    articles = favorites.docs.map((doc) => ({ ...doc.data() }));
     pages = Math.ceil(articles.length / page_size);
-  })
+  });
 </script>

@@ -5,6 +5,8 @@
 
   /** @type {import('./$types').PageData}*/
   export let data;
+
+  let user = data.session.user;
 </script>
 
 <svelte:head>
@@ -21,14 +23,14 @@
 <div
   class="flex flex-col min-h-screen min-w-full max-w-screen m-0 p-0 bg-white dark:bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-900 text-black dark:text-white"
 >
-  <Navbar />
+  <Navbar {user} />
   <main class="container mx-auto items-center m-0">
     <slot />
   </main>
 </div>
 
-{#if data.session.user}
-  <Appbar />
+{#if user}
+  <Appbar {user} />
 {:else}
   <Footer />
 {/if}

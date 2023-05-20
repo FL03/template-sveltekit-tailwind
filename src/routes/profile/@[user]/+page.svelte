@@ -2,7 +2,7 @@
   import { page } from '$app/stores';
   import PostTimeline from '$lib/cmp/posts/PostTimeline.svelte';
   import { page_size } from '$lib';
-  import { firestore } from '$lib/firebase/stores';
+  import { firestore, session } from '$lib/firebase/stores';
   import { getPosts } from '$lib/firebase';
   import type { Post } from '$lib/models/posts';
   import type { User } from '$lib/types/users';
@@ -13,10 +13,7 @@
   let pages: number;
   let profile: User | undefined;
 
-  /** @type {import('./$types').PageData} */
-  export let data;
-
-  $: user = $page.data.session.user;
+  const user = $page.data.session.user;
 
   onMount(async () => {
     const pdoc = await firestore.getDocument(`users/${$page.params.user}`);
