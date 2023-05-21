@@ -19,6 +19,7 @@ export declare interface PostGeodata {
 export class PostGeodata implements PostGeodata {
   constructor() {
     this.geopoint = new GeoPoint(0, 0);
+    this.geohash = geohashForLocation([this.geopoint.latitude, this.geopoint.longitude]);
   }
   new(geopoint: GeoPoint): PostGeodata {
     return new PostGeodata().update(geopoint);
@@ -98,9 +99,6 @@ export class Post implements Post {
   }
   update(obj: Partial<Post>): Post {
     return Object.assign(this, obj);
-  }
-  set fromUser(user: User) {
-    this.author.fromUser = user;
   }
 }
 

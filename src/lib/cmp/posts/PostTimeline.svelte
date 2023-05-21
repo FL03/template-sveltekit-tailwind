@@ -4,7 +4,7 @@
   import PostPreview from './PostPreview.svelte';
 
   export let articles: import('$lib/models').Post[] = [];
-  export let user: import('$lib/types').User;
+  export let user: import('$lib/types/users').User;
 </script>
 
 {#if articles.length === 0}
@@ -12,7 +12,7 @@
 {:else if articles.length > 0 && user}
   {#each articles as article (article.slug)}
     <Timeline order="vertical">
-      <TimelineItem title={article.title} date={article.createdAt.toString()}>
+      <TimelineItem title={article.title} date={article.createdAt.toDate().toDateString()}>
         <PostPreview {article} {user} />
       </TimelineItem>
     </Timeline>

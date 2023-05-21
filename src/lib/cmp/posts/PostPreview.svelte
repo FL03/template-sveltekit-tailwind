@@ -16,8 +16,10 @@
     </a>
 
     <div class="info">
-      <a class="author" href="/profile/@{article.author.uid}">{article.author.username}</a>
-      <span class="date">{article.createdAt}</span>
+      <a class="author" href="/profile/@{article.author.uid}"
+        >{article.author.username || article.author.name}</a
+      >
+      <span class="date">{article.createdAt.toDate().toDateString()}</span>
     </div>
 
     {#if user}

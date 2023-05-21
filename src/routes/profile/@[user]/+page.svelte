@@ -13,7 +13,7 @@
   let pages: number;
   let profile: User | undefined;
 
-  const user = $session.user;
+  $: user = $session.user;
 
   onMount(async () => {
     const pdoc = await firestore.getDocument(`users/${$page.params.user}`);

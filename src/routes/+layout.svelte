@@ -7,7 +7,7 @@
   /** @type {import('./$types').PageData}*/
   export let data;
 
-  const user = $session.user;
+  $: user = $session.user;
 </script>
 
 <svelte:head>
