@@ -1,6 +1,11 @@
-name: Release
+name: Desktop
+
+env:
+  NODE_VERSION: 18
+
 on:
   push:
+    branches: [ main, prod* ]
     tags: [ v*.*.* ]
   workflow_dispatch:
 
@@ -17,7 +22,7 @@ jobs:
       - name: Node.js setup
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: ${{ env.NODE_VERSION }}
       - name: Rust setup
         uses: dtolnay/rust-toolchain@stable
       - name: Install dependencies (ubuntu only)

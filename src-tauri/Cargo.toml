@@ -1,7 +1,7 @@
 [package]
 authors = ["FL03 <jo3mccain@icloud.com>"]
 build = "src/build.rs"
-default-run = "tauri-svelte-template"
+default-run = "template-sveltekit-tailwind"
 description = "A Tauri App"
 edition = "2018"
 license = "Apache-2.0"
