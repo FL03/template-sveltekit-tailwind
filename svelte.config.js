@@ -4,7 +4,7 @@ import multiAdapter from '@macfja/svelte-multi-adapter';
 import { vitePreprocess } from '@sveltejs/kit/vite';
 
 /** @type {import('@sveltejs/kit').Config} */
-export default {
+const config = {
   kit: {
     adapter: multiAdapter([
       adapterNode({
@@ -17,3 +17,5 @@ export default {
     postcss: true
   })
 };
+
+export default config;

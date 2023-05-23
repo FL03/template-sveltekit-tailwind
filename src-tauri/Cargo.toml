@@ -1,0 +1,24 @@
+[package]
+authors = ["FL03 <jo3mccain@icloud.com>"]
+build = "src/build.rs"
+default-run = "tauri-svelte-template"
+description = "A Tauri App"
+edition = "2018"
+license = "Apache-2.0"
+name = "template-sveltekit-tailwind"
+repository = "https://github.com/FL03/template-sveltekit-tailwind"
+version = "0.1.0"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[build-dependencies]
+tauri-build = { features = [], version = "1.3" }
+
+[dependencies]
+serde = { features = ["derive"], version = "1.0" }
+serde_json = "1"
+tauri = { version = "1.3", features = ["devtools", "shell-open"] }
+
+[features]
+default = [ "custom-protocol" ]
+custom-protocol = [ "tauri/custom-protocol" ]
