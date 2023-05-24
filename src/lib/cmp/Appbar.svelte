@@ -1,8 +1,8 @@
 <script lang="ts">
   import { BottomNav, BottomNavItem, Modal, Tooltip } from 'flowbite-svelte';
-  import PostForm from '$lib/cmp/posts/PostForm.svelte';
+  import { PostForm } from './posts';
 
-  export let user: import('$lib/types/users').User;
+  export let user: import('$lib').User;
   // Bindings
   let modalToggle = false;
 </script>

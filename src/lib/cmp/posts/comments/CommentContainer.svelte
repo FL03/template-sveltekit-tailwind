@@ -2,8 +2,8 @@
   import CommentInput from './CommentInput.svelte';
   import Comment from './Comment.svelte';
 
-  export let comments: import('$lib/models/comments').Comment[];
-  export let user: import('$lib/types').User;
+  export let comments: import('$lib').PostComment[];
+  export let user: import('$lib').User;
 </script>
 
 <div class="col-xs-12 col-md-8 offset-md-2">

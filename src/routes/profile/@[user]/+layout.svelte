@@ -12,21 +12,20 @@
     DropdownItem,
     MenuButton
   } from 'flowbite-svelte';
-  import { session } from '$lib/firebase/stores';
+  import { firestore } from '$lib/firebase';
 
   // Bindings
   let horizontal = false;
 
   /** @type {import('./$types').PageData} */
   export let data;
-
-  // Data
-  const { profile } = data;
+  const { profile } = data;  
 
   $: is_favorites = $page.route.id === '/profile/@[user]/favorites';
-  $: user = $session.user;
+  $: user = $page.data.session.user;
 
-  onMount(async () => {});
+  onMount(async () => {
+  });
 </script>
 
 <svelte:head>

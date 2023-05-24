@@ -5,7 +5,7 @@
 
   import { Button, Checkbox, Label, Input, Textarea } from 'flowbite-svelte';
   import { Post } from '$lib/models/posts';
-  import { firestore } from '$lib/firebase/stores';
+  import { firestore } from '$lib/firebase';
 
   export let user: import('$lib/types').User;
   export let article: Post = new Post(user);

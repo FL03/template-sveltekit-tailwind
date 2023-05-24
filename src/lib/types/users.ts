@@ -1,8 +1,5 @@
-import type { Filter } from './filters';
-
-export declare interface UserFilter extends Filter {
-  name?: string;
-}
+import type { FirestoreConverter } from '$lib/firebase';
+import type { DocumentSnapshot, SnapshotOptions } from 'firebase/firestore';
 
 export declare interface HumanName {
   first?: string;
@@ -52,3 +49,21 @@ export class User implements User {
     this.uid = '';
   }
 }
+
+// Firestore data converter
+export const userConverter: FirestoreConverter<User> = {
+  toFirestore: (data: User) => {
+    return {
+      ...data
+    };
+  },
+  fromFirestore: (snapshot: DocumentSnapshot | import('firebase-admin/firestore').DocumentSnapshot, options?: SnapshotOptions) => {
+    const data = snapshot.data(options);
+    return {
+      email: data?.email,
+      name: data?.name,
+      uid: data?.uid,
+      ...data
+    };
+  }
+};

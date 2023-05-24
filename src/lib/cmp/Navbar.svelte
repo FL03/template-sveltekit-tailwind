@@ -6,7 +6,7 @@
 
   export let banner = 'Template';
   export let logo = 'https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600';
-  export let user: import('$lib/types/users').User | null = null;
+  export let user: import('$lib').User | null = null;
 </script>
 
 <Navbar

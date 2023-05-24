@@ -1,17 +1,24 @@
 import { browser } from '$app/environment';
 import { derived, writable } from 'svelte/store';
-import { app, auth } from '$lib/firebase/stores';
+import { app, auth } from '$lib/firebase';
 import { Post, postConverter } from '$lib/models';
 import { page_size } from '$lib';
 
-import type { PostFilter } from '$lib/models';
-import type { Firestore } from 'firebase/firestore';
+import type { Firestore, Timestamp } from 'firebase/firestore';
+
+export declare interface PostFilter {
+  categories?: string[];
+  keywords?: string[];
+  limit: number;
+  start?: Timestamp;
+  user?: import('$lib/types').User
+}
 
 /**
  * A custom store for managing the order filter
  */
 function createPostFilter() {
-  const INITIAL: PostFilter = { start: null, limit: page_size };
+  const INITIAL: PostFilter = { limit: page_size };
   const STATE: PostFilter = { ...INITIAL };
 
   const { subscribe, set } = writable<PostFilter>(STATE);
@@ -24,9 +31,9 @@ function createPostFilter() {
   return {
     subscribe,
     reset: () => set(INITIAL),
-    first: () => update({ start: null }),
-    next: (start: Date) => update({ start }),
-    size: (limit: number) => update({ limit, start: null })
+    first: () => update({ start: undefined }),
+    next: (start: Timestamp) => update({ start }),
+    size: (limit: number) => update({ limit })
   };
 }
 

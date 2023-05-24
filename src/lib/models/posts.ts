@@ -43,16 +43,8 @@ export declare interface PostMeta {
   favorites?: string[];
   keywords?: string[];
   link?: string;
-  published: boolean;
-  updated?: Date;
-}
-
-export declare interface PostData {
-  body: string;
-  createdAt: Timestamp;
-  description?: string;
-  tags: string[];
-  title: string;
+  published?: boolean;
+  updated?: Timestamp;
 }
 
 export declare interface Author {
@@ -79,11 +71,11 @@ export class Author implements Author {
 export declare interface Post extends PostMeta {
   id: string;
   author: User;
-  geo?: PostGeodata; // geolocation information; switch to GeoHash for better indexing in firestore
-  slug: string;
   body: string;
   createdAt: Timestamp;
   description?: string;
+  geo?: PostGeodata;
+  slug: string;
   tags: string[];
   title: string;
   [key: string]: unknown;
@@ -102,14 +94,6 @@ export class Post implements Post {
     this.createdAt = Timestamp.now();
     this.published = false;
   }
-  update(obj: Partial<Post>): Post {
-    return Object.assign(this, obj);
-  }
-}
-
-export declare interface PostFilter extends Filter {
-  categories?: string[];
-  keywords?: string[];
 }
 
 // Firestore data converter
@@ -121,6 +105,15 @@ export const postConverter: FirestoreConverter<Post> = {
   },
   fromFirestore: (snapshot: DocumentSnapshot | import('firebase-admin/firestore').DocumentSnapshot, options?: SnapshotOptions) => {
     const data = snapshot.data(options);
-    return new Post(data?.author).update({ ...data });
+    return {
+      author: data?.author,
+      body: data?.body,
+      createdAt: data?.createdAt,
+      id: data?.id,
+      slug: data?.slug,
+      tags: data?.tags,
+      title: data?.title,
+      ...data
+    };
   }
 };

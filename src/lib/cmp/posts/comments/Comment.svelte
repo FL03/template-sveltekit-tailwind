@@ -2,7 +2,7 @@
   import { enhance } from '$app/forms';
   import { Card } from 'flowbite-svelte';
 
-  export let comment: import('$lib/models/comments').Comment;
+  export let comment: import('$lib').PostComment;
   export let user: import('$lib/types').User;
 </script>
 

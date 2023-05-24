@@ -1,18 +1,20 @@
 import { browser } from '$app/environment';
 import { derived, writable } from 'svelte/store';
-import type { Readable, Writable } from 'svelte/store';
-import type { FirebaseApp } from 'firebase/app';
-import type { Auth } from 'firebase/auth';
-import type { Firestore } from 'firebase/firestore';
+import type { Firestore, Timestamp } from 'firebase/firestore';
+import { app, auth } from '$lib/firebase';
+import { page_size, userConverter } from '$lib';
+import type { User } from '$lib';
 
-import { app, auth } from '$lib/firebase/stores';
-import type { User, UserFilter } from '$lib/models/users';
-
+export declare interface UserFilter {
+  limit: number;
+  name?: string;
+  start?: Timestamp
+}
 /**
  * A custom store for managing the order filter
  */
 function createUserFilter() {
-  const INITIAL: UserFilter = { start: null, limit: 10 };
+  const INITIAL: UserFilter = { limit: page_size };
   const STATE: UserFilter = { ...INITIAL };
 
   const { subscribe, set } = writable<UserFilter>(STATE);
@@ -25,9 +27,9 @@ function createUserFilter() {
   return {
     subscribe,
     reset: () => set(INITIAL),
-    first: () => update({ start: null }),
-    next: (start: Date) => update({ start }),
-    size: (limit: number) => update({ limit, start: null })
+    first: () => update({ start: undefined }),
+    next: (start: Timestamp) => update({ start }),
+    size: (limit: number) => update({ limit })
   };
 }
 
@@ -57,7 +59,7 @@ function createUsers() {
           q = query(q, limit($filter.limit));
 
           unsubscribe = onSnapshot(q, (snap) =>
-            set(snap.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+            set(snap.docs.map((doc) => (userConverter.fromFirestore(doc, {}))))
           );
         } else {
           set([]);

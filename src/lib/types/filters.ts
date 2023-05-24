@@ -1,8 +1,9 @@
 import { page_size } from '$lib/constants';
+import type { Timestamp } from 'firebase/firestore';
 
 export declare interface DateFilter {
-  start?: Date;
-  end?: Date;
+  start?: Timestamp;
+  end?: Timestamp;
 }
 
 export declare interface LimitFilter {
@@ -10,7 +11,7 @@ export declare interface LimitFilter {
 }
 
 export declare interface Filter extends LimitFilter {
-  start: Date | null;
+  start: Timestamp | null;
 }
 
 export class Filter implements Filter {

@@ -48,7 +48,7 @@
         }}
         class="pull-xs-right"
       >
-        <Checkbox hidden name="favorited" checked={article.favorited} />
+        <Checkbox hidden name="favorited" checked={article.favorited || false} />
         <button class="btn btn-sm {article.favorited ? 'btn-primary' : 'btn-outline-primary'}">
           <i class="ion-heart" />
           {article.favoritesCount}

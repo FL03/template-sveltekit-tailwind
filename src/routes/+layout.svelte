@@ -11,9 +11,7 @@
 </script>
 
 <svelte:head>
-  <link href="https://rsms.me/inter/inter.css" rel="stylesheet" />
-  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" />
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+  
 </svelte:head>
 
 <GoogleMaps
