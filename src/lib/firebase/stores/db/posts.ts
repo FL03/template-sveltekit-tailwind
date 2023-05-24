@@ -59,7 +59,7 @@ function createPosts() {
 
           let q = query(collection(firestore, 'posts'));
 
-          q = query(q, where('user', '==', $auth.currentUser?.uid));
+          q = query(q, where('author.uid', '==', $auth.currentUser?.uid));
           q = query(q, orderBy('createdAt', 'desc'));
           q = query(q, startAfter('createdAt', $filter.start));
           q = query(q, limit($filter.limit));
