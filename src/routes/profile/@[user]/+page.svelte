@@ -1,23 +1,14 @@
 <script lang="ts">
   import { page } from '$app/stores';
-  import PostTimeline from '$lib/cmp/posts/PostTimeline.svelte';
-  import { page_size } from '$lib';
-  import { firestore, getPosts, posts } from '$lib/firebase';
-  import type { Post, User } from '$lib';
+  import { PostTimeline } from '$lib';
+  import { posts } from '$lib/firebase';
   import { Tabs, TabItem } from 'flowbite-svelte';
   import { onMount } from 'svelte';
 
-  let articles: Post[] = [];
-  let pages: number;
-  let profile: User | undefined;
-
-  $: user = $page.data.session.user;
   $: articles = $posts;
-  $: pages = Math.ceil(articles.length / page_size);
-
+  $: user = $page.data.session.user;
+ 
   onMount(async () => {
-    const pdoc = await firestore.getDocument(`users/${$page.params.user}`);
-    profile = { ...pdoc.data(), email: pdoc.data()?.email, uid: pdoc.id, name: pdoc.data()?.name };
   });
 </script>
 

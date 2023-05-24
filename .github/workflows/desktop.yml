@@ -9,11 +9,7 @@ on:
     tags: [ v*.*.* ]
   workflow_dispatch:
 
-permissions:
-  contents: read
-  deployments: write
-  id-token: write
-  pages: write
+permissions: write-all
 
 jobs:
   release:

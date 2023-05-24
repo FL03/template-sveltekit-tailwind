@@ -10,7 +10,7 @@ export declare interface PostFilter {
   categories?: string[];
   keywords?: string[];
   limit: number;
-  start?: Timestamp;
+  start: Timestamp | null;
   user?: import('$lib/types').User
 }
 
@@ -18,7 +18,7 @@ export declare interface PostFilter {
  * A custom store for managing the order filter
  */
 function createPostFilter() {
-  const INITIAL: PostFilter = { limit: page_size };
+  const INITIAL: PostFilter = { limit: page_size, start: null };
   const STATE: PostFilter = { ...INITIAL };
 
   const { subscribe, set } = writable<PostFilter>(STATE);
@@ -31,7 +31,7 @@ function createPostFilter() {
   return {
     subscribe,
     reset: () => set(INITIAL),
-    first: () => update({ start: undefined }),
+    first: () => update({ start: null }),
     next: (start: Timestamp) => update({ start }),
     size: (limit: number) => update({ limit })
   };

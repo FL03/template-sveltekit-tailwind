@@ -12,7 +12,6 @@
     DropdownItem,
     MenuButton
   } from 'flowbite-svelte';
-  import { firestore } from '$lib/firebase';
 
   // Bindings
   let horizontal = false;
