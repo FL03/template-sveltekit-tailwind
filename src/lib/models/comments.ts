@@ -1,14 +1,14 @@
 import type { User } from '$lib/types';
 
-export declare interface Comment {
+export declare interface PostComment {
   id: string;
   author: User;
   body: string;
   createdAt: Date;
 }
 
-export class Comment implements Comment {
-  constructor(comment: Partial<Comment>) {
+export class PostComment implements PostComment {
+  constructor(comment: Partial<PostComment>) {
     Object.assign(this, comment);
   }
 }

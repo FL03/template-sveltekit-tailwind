@@ -44,8 +44,6 @@
     "prettier-plugin-svelte": "latest",
     "svelte": "latest",
     "svelte-check": "latest",
-    "svelte-preprocess": "latest",
-    "svelte-adapter-firebase": "latest",
     "tailwindcss": "latest",
     "ts-node": "latest",
     "tslib": "latest",

@@ -1,10 +1,10 @@
 import { browser } from '$app/environment';
 import { derived, writable } from 'svelte/store';
 import { app, auth } from '$lib/firebase/stores';
-import { Post } from '$lib/models/posts';
-import { page_size } from '$lib/constants';
+import { Post, postConverter } from '$lib/models';
+import { page_size } from '$lib';
 
-import type { PostFilter } from '$lib/models/posts';
+import type { PostFilter } from '$lib/models';
 import type { Firestore } from 'firebase/firestore';
 
 /**
@@ -53,12 +53,12 @@ function createPosts() {
           let q = query(collection(firestore, 'posts'));
 
           q = query(q, where('user', '==', $auth.currentUser?.uid));
-          q = query(q, orderBy('published', 'desc'));
-          q = query(q, startAfter('published', $filter.start));
+          q = query(q, orderBy('createdAt', 'desc'));
+          q = query(q, startAfter('createdAt', $filter.start));
           q = query(q, limit($filter.limit));
 
           unsubscribe = onSnapshot(q, (snap) =>
-            set(snap.docs.map((doc) => new Post(doc.data().author).update({ ...doc.data() })))
+            set(snap.docs.map((doc) => (postConverter.fromFirestore(doc, {}))))
           );
         } else {
           set([]);

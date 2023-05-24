@@ -1,11 +1,7 @@
-import { Filter } from './filters';
-export { Filter };
-
-import { Session } from './session';
-export { Session };
-
-import { User } from './users';
-export { User };
+export * from './filters';
+export * from './session';
+export * from './settings';
+export * from './users';
 
 export interface Link {
   href: string;

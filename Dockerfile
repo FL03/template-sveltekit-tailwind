@@ -4,6 +4,9 @@ RUN apt-get update -y && apt-get upgrade -y
 
 FROM builder-base as builder
 
+ENV PUBLIC_FIREBASE_CONFIG='{"apiKey": "demo","authDomain": "demo.firebaseapp.com","projectId": "svkcl-d7eb1","storageBucket": "demo.appspot.com"}' \
+    PUBLIC_GOOGLE_MAPS_API_KEY=""
+
 ADD . /workspace
 WORKDIR /workspace
 
@@ -14,7 +17,8 @@ FROM node:18-slim as production
 
 RUN apt-get update -y && apt-get upgrade -y
 
-ENV POST=3000 \
+ENV NODE_ENV="production" \
+    PORT=3000 \
     PUBLIC_FIREBASE_CONFIG='{"apiKey": "demo","authDomain": "demo.firebaseapp.com","projectId": "svkcl-d7eb1","storageBucket": "demo.appspot.com"}' \
     PUBLIC_GOOGLE_MAPS_API_KEY=""
 

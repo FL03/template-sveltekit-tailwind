@@ -9,16 +9,16 @@ name = "template-sveltekit-tailwind"
 repository = "https://github.com/FL03/template-sveltekit-tailwind"
 version = "0.0.1"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[features]
+default = [ "custom-protocol" ]
+custom-protocol = [ "tauri/custom-protocol" ]
 
 [build-dependencies]
-tauri-build = { features = [], version = "1.3" }
+tauri-build = { features = [], version = "2.0.0-alpha" }
 
 [dependencies]
 serde = { features = ["derive"], version = "1.0" }
 serde_json = "1"
-tauri = { version = "1.3", features = ["devtools", "shell-open"] }
+tauri = { version = "2.0.0-alpha", features = ["devtools", "shell-open"] }
 
-[features]
-default = [ "custom-protocol" ]
-custom-protocol = [ "tauri/custom-protocol" ]
+

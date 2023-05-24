@@ -1,6 +1,7 @@
 {
   "package": {
-    "productName": "Template SvelteKit Tailwind"
+    "productName": "Template SvelteKit Tailwind",
+    "version": "0.0.1"
   },
   "build": {
     "distDir": "../build",
@@ -11,8 +12,8 @@
   "tauri": {
     "bundle": {
       "active": true,
-      "targets": ["dmg", "deb", "appimage", "msi"],
-      "identifier": "com.example.template-sveltekit-tailwind",
+      "category": "DeveloperTool",
+      "copyright": "© 2023 Puzzled",
       "icon": [
         "icons/32x32.png",
         "icons/128x128.png",
@@ -20,34 +21,26 @@
         "icons/icon.icns",
         "icons/icon.ico"
       ],
-      "resources": [],
       "externalBin": [],
-      "copyright": "© 2023 Puzzled",
-      "category": "DeveloperTool",
-      "shortDescription": "",
+      "identifier": "com.example.template-sveltekit-tailwind",
       "longDescription": "",
+      "resources": [],
+      "shortDescription": "",
+      "targets": ["dmg", "deb", "appimage", "msi"],
       "deb": {
         "depends": []
       },
       "macOS": {
+        "entitlements": null,
+        "exceptionDomain": "",
         "frameworks": [],
         "minimumSystemVersion": "10.13",
-        "exceptionDomain": "",
-        "signingIdentity": null,
-        "entitlements": null
+        "signingIdentity": null
       },
       "windows": {
         "certificateThumbprint": null,
         "digestAlgorithm": "sha256",
         "timestampUrl": ""
-      }
-    },
-    "updater": {
-      "active": false
-    },
-    "allowlist": {
-      "shell": {
-        "open": true
       }
     },
     "security": {

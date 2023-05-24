@@ -4,8 +4,8 @@ import { page } from '$app/stores';
 
 import { auth } from './auth';
 import { firestore } from './firestore';
+import { dedupe } from '$lib/stores';
 import type { Session } from '$lib/types';
-import { dedupe } from './dedupe';
 
 // internal store allows us to override the page data session without having to invalidate LayoutData
 const internal = writable<Session>();

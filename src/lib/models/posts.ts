@@ -38,7 +38,7 @@ export class PostGeodata implements PostGeodata {
   }
 }
 
-export declare interface PostMetadata {
+export declare interface PostMeta {
   categories?: string[];
   favorites?: string[];
   keywords?: string[];
@@ -76,11 +76,16 @@ export class Author implements Author {
   }
 }
 
-export declare interface Post extends PostData, PostMetadata {
+export declare interface Post extends PostMeta {
   id: string;
   author: User;
   geo?: PostGeodata; // geolocation information; switch to GeoHash for better indexing in firestore
   slug: string;
+  body: string;
+  createdAt: Timestamp;
+  description?: string;
+  tags: string[];
+  title: string;
   [key: string]: unknown;
 }
 
@@ -114,7 +119,7 @@ export const postConverter: FirestoreConverter<Post> = {
       ...data
     };
   },
-  fromFirestore: (snapshot: DocumentSnapshot, options: SnapshotOptions) => {
+  fromFirestore: (snapshot: DocumentSnapshot | import('firebase-admin/firestore').DocumentSnapshot, options?: SnapshotOptions) => {
     const data = snapshot.data(options);
     return new Post(data?.author).update({ ...data });
   }
