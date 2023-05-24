@@ -3,7 +3,6 @@
   windows_subsystem = "windows"
 )]
 
-use tauri::api::shell;
 use tauri::{
   AboutMetadata, CustomMenuItem, Manager, Menu, MenuEntry, MenuItem, Submenu, WindowBuilder,
   WindowUrl,
