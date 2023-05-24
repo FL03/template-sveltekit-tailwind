@@ -13,11 +13,10 @@
 
   $: user = $page.data.session.user;
   $: articles = $posts;
+  $: pages = Math.ceil(articles.length / page_size);
 
   onMount(async () => {
     const pdoc = await firestore.getDocument(`users/${$page.params.user}`);
-    // articles = await getPosts($page.params.user);
-    pages = Math.ceil(articles.length / page_size);
     profile = { ...pdoc.data(), email: pdoc.data()?.email, uid: pdoc.id, name: pdoc.data()?.name };
   });
 </script>
