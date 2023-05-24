@@ -1,6 +1,6 @@
 [package]
 authors = ["FL03 <jo3mccain@icloud.com>"]
-build = "src/build.rs"
+build = "build.rs"
 default-run = "template-sveltekit-tailwind"
 description = "A Tauri App"
 edition = "2018"

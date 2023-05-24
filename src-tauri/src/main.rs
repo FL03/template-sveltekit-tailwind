@@ -72,16 +72,6 @@ fn main() {
         Menu::with_items([CustomMenuItem::new("Learn More", "Learn More").into()]),
       )),
     ]))
-    .on_menu_event(|event| {
-      let event_name = event.menu_item_id();
-      match event_name {
-        "Learn More" => {
-          let url = "https://github.com/probablykasper/tauri-svelte-template".to_string();
-          shell::open(&event.window().shell_scope(), url, None).unwrap();
-        }
-        _ => {}
-      }
-    })
     .run(ctx)
     .expect("error while running tauri application");
 }
