@@ -14,7 +14,7 @@ default = [ "custom-protocol" ]
 custom-protocol = [ "tauri/custom-protocol" ]
 
 [build-dependencies]
-tauri-build = { features = [], version = "2.0.0-alpha.8" }
+tauri-build = { features = [], version = "2.0.0-alpha" }
 
 [dependencies]
 serde = { features = ["derive"], version = "1" }
