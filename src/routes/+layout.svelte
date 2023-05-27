@@ -1,5 +1,6 @@
 <script>
   import '$lib/assets/css/app.css';
+  import { PUBLIC_GOOGLE_MAPS_API_KEY } from '$env/static/public';
   import { Appbar, Footer, Navbar } from '$lib/cmp';
   import { session } from '$lib/firebase/stores';
   import { GoogleMaps } from '@svkcl/google-maps';
@@ -15,7 +16,7 @@
 </svelte:head>
 
 <GoogleMaps
-  apiKey={'AIzaSyBTyELyLAMZB9yFQK8SM5iZTjEJd3d0bHg'}
+  apiKey={PUBLIC_GOOGLE_MAPS_API_KEY}
   libraries={['places', 'visualization']}
 />
 

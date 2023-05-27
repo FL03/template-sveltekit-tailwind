@@ -6,6 +6,8 @@
   },
   "categories": [],
   "dependencies": {
+    "@popperjs/core": "latest",
+    "classnames": "latest",
     "cookie": "latest",
     "firebase-admin": "latest"
   },
@@ -14,10 +16,8 @@
     "@fontsource/fira-mono": "latest",
     "@macfja/svelte-multi-adapter": "latest",
     "@neoconfetti/svelte": "latest",
-    "@popperjs/core": "latest",
     "@sveltejs/adapter-auto": "latest",
     "@sveltejs/adapter-node": "latest",
-    "@sveltejs/adapter-vercel": "latest",
     "@sveltejs/kit": "latest",
     "@sveltejs/package": "latest",
     "@svkcl/google-maps": "latest",
@@ -27,7 +27,6 @@
     "@types/google.maps": "latest",
     "@types/node": "latest",
     "autoprefixer": "latest",
-    "classnames": "latest",
     "concurrently": "latest",
     "eslint": "latest",
     "eslint-config-prettier": "latest",

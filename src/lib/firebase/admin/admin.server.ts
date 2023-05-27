@@ -15,27 +15,11 @@ if (dev) {
  */
 let appOptions: import('firebase-admin/app').AppOptions;
 
-if (dev) {
-  appOptions = {
-    projectId: 'svkcl-d7eb1',
-    storageBucket: 'demo.appspot.com'
-  };
-  console.log('firebaseConfig (server)', appOptions);
-} else {
-  let credential;
-  // https://firebase.google.com/docs/reference/admin/node/admin.credential#cert
-  if (env.GOOGLE_APPLICATION_CREDENTIALS) {
-    const serviceAccount = JSON.parse(env.GOOGLE_APPLICATION_CREDENTIALS);
-    credential = cert(serviceAccount);
-  } else {
-    credential = applicationDefault()
-  }
-  appOptions = {
-    credential,
-    projectId: 'svkcl-d7eb1',
-    storageBucket: `svkcl-d7eb1.appspot.com`
-  };
-}
+appOptions = {
+  credential: applicationDefault(),
+  projectId: 'svkcl-d7eb1',
+  storageBucket: `${dev ? 'demo' : 'svkcl-d7eb1'}.appspot.com`
+};
 
 // this is the server-side firebase client
 export const app = initializeApp(appOptions, 'server' + Math.random());

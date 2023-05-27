@@ -23,16 +23,15 @@
       "**/.vercel/**",
       "**/node_modules/**"
     ],
-    "rewrites": [
-      {
-        "source": "**",
-        "run": {
-          "region": "us-central1",
-          "serviceId": "template-sveltekit-tailwind"
-        }
-      }
-    ],
-    "site": "template-sveltekit-tailwind",
+    "frameworksBackend": {
+      "concurrency": 1,
+      "cpu": 1,
+      "maxInstances": 10,
+      "maxScale": 5,
+      "memory": "1GiB",
+      "region": "us-central1"
+    },
+    "source": ".",
     "trailingSlash": false
   }
 }
