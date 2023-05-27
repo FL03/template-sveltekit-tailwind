@@ -38,7 +38,7 @@ jobs:
       - uses: actions/checkout@v3
       - name: Build
         env:
-          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_SVKCL_D7EB1 }}
           PUBLIC_FIREBASE_CONFIG: ${{ secrets.FIREBASE_CONFIG }}
           PUBLIC_GOOGLE_MAPS_API_KEY: ${{ secrets.GOOGLE_MAPS_API_KEY }}
         run: |
