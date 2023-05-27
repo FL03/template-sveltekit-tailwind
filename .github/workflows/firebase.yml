@@ -36,14 +36,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Build
+      - name: Setup
+        run: npm install
+      - uses: FirebaseExtended/action-hosting-deploy@v0
         env:
           PUBLIC_FIREBASE_CONFIG: ${{ secrets.FIREBASE_CONFIG }}
           PUBLIC_GOOGLE_MAPS_API_KEY: ${{ secrets.GOOGLE_MAPS_API_KEY }}
-        run: |
-          npm install
-          npm run build
-      - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           channelId: ${{ env.CHANNEL }}
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_SVKCL_D7EB1 }}
