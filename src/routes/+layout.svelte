@@ -11,14 +11,9 @@
   $: user = $session.user;
 </script>
 
-<svelte:head>
-  
-</svelte:head>
+<svelte:head />
 
-<GoogleMaps
-  apiKey={PUBLIC_GOOGLE_MAPS_API_KEY}
-  libraries={['places', 'visualization']}
-/>
+<GoogleMaps apiKey={PUBLIC_GOOGLE_MAPS_API_KEY} libraries={['places', 'visualization']} />
 
 <div
   class="flex flex-col min-h-screen min-w-full max-w-screen m-0 p-0 bg-white dark:bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-900 text-black dark:text-white"

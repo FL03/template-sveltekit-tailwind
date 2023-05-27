@@ -103,7 +103,10 @@ export const postConverter: FirestoreConverter<Post> = {
       ...data
     };
   },
-  fromFirestore: (snapshot: DocumentSnapshot | import('firebase-admin/firestore').DocumentSnapshot, options?: SnapshotOptions) => {
+  fromFirestore: (
+    snapshot: DocumentSnapshot | import('firebase-admin/firestore').DocumentSnapshot,
+    options?: SnapshotOptions
+  ) => {
     const data = snapshot.data(options);
     return {
       author: data?.author,

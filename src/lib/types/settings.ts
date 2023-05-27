@@ -1,4 +1,3 @@
-
 export declare interface Provider<T = unknown> {
   config: T;
   name: string;
@@ -15,6 +14,6 @@ export declare interface Settings {
 export class Settings implements Settings {
   constructor() {
     this.locale = 'en';
-    this.theme = 'light'
+    this.theme = 'light';
   }
 }

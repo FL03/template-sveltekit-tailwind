@@ -5,8 +5,8 @@ env:
 
 on:
   push:
-    branches: [ main, prod* ]
-    tags: [ v*.*.* ]
+    branches: [main, prod*]
+    tags: [v*.*.*]
   workflow_dispatch:
 
 permissions: write-all

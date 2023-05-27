@@ -11,5 +11,5 @@ export async function getPosts(uid: string, start?: Timestamp): Promise<import('
   }
   q = query(q, limit(page_size));
   const snapshot = await firestore.getDocuments(q);
-  return snapshot.docs.map((doc) => (postConverter.fromFirestore(doc, {})));
+  return snapshot.docs.map((doc) => postConverter.fromFirestore(doc, {}));
 }

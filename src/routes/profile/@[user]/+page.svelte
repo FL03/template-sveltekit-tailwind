@@ -7,9 +7,8 @@
 
   $: articles = $posts;
   $: user = $page.data.session.user;
- 
-  onMount(async () => {
-  });
+
+  onMount(async () => {});
 </script>
 
 {#if user}

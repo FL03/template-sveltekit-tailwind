@@ -18,13 +18,12 @@
 
   /** @type {import('./$types').PageData} */
   export let data;
-  const { profile } = data;  
+  const { profile } = data;
 
   $: is_favorites = $page.route.id === '/profile/@[user]/favorites';
   $: user = $page.data.session.user;
 
-  onMount(async () => {
-  });
+  onMount(async () => {});
 </script>
 
 <svelte:head>

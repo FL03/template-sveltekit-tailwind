@@ -8,7 +8,7 @@ import type { User } from '$lib';
 export declare interface UserFilter {
   limit: number;
   name?: string;
-  start?: Timestamp
+  start?: Timestamp;
 }
 /**
  * A custom store for managing the order filter
@@ -59,7 +59,7 @@ function createUsers() {
           q = query(q, limit($filter.limit));
 
           unsubscribe = onSnapshot(q, (snap) =>
-            set(snap.docs.map((doc) => (userConverter.fromFirestore(doc, {}))))
+            set(snap.docs.map((doc) => userConverter.fromFirestore(doc, {})))
           );
         } else {
           set([]);

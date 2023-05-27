@@ -11,7 +11,7 @@ export declare interface PostFilter {
   keywords?: string[];
   limit: number;
   start: Timestamp | null;
-  user?: import('$lib/types').User
+  user?: import('$lib/types').User;
 }
 
 /**
@@ -65,7 +65,7 @@ function createPosts() {
           q = query(q, limit($filter.limit));
 
           unsubscribe = onSnapshot(q, (snap) =>
-            set(snap.docs.map((doc) => (postConverter.fromFirestore(doc, {}))))
+            set(snap.docs.map((doc) => postConverter.fromFirestore(doc, {})))
           );
         } else {
           set([]);

@@ -1,5 +1,4 @@
 import { dev } from '$app/environment';
-import { env } from '$env/dynamic/private';
 import { applicationDefault, initializeApp, cert } from 'firebase-admin/app';
 import { getAuth } from 'firebase-admin/auth';
 import { getFirestore } from 'firebase-admin/firestore';
@@ -13,9 +12,7 @@ if (dev) {
  * @description Firebase Admin SDK configuration; this is the server-side firebase client
  * @see https://firebase.google.com/docs/reference/admin/node/admin.credential#cert
  */
-let appOptions: import('firebase-admin/app').AppOptions;
-
-appOptions = {
+const appOptions: import('firebase-admin/app').AppOptions = {
   credential: applicationDefault(),
   projectId: 'svkcl-d7eb1',
   storageBucket: `${dev ? 'demo' : 'svkcl-d7eb1'}.appspot.com`
