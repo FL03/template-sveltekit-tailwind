@@ -40,6 +40,7 @@ jobs:
         run: npm install
       - uses: FirebaseExtended/action-hosting-deploy@v0
         env:
+          FIREBASE_CLI_EXPERIMENTS: webframeworks
           PUBLIC_FIREBASE_CONFIG: ${{ secrets.FIREBASE_CONFIG }}
           PUBLIC_GOOGLE_MAPS_API_KEY: ${{ secrets.GOOGLE_MAPS_API_KEY }}
         with:
