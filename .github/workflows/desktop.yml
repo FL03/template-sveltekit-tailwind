@@ -1,12 +1,17 @@
 name: Desktop
 
+concurrency:
+  group: 'desktop'
+  cancel-in-progress: false
+
 env:
   NODE_VERSION: 18
 
 on:
-  push:
-    branches: [main, prod*]
-    tags: [v*.*.*]
+  release:
+    types: [ published ]
+  repository_dispatch:
+    types: [ desktop-deploy ]
   workflow_dispatch:
 
 permissions: write-all
