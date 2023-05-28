@@ -24,6 +24,9 @@ permissions: write-all
 
 jobs:
   publisher:
+    env:
+      PUBLIC_FIREBASE_CONFIG: ${{ secrets.FIREBASE_CONFIG }}
+      PUBLIC_GOOGLE_MAPS_API_KEY: ${{ secrets.GOOGLE_MAPS_API_KEY }}
     environment:
       name: production
       url: https://${{ env.FIREBASE_PID }}.firebaseapp.com
@@ -31,12 +34,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Setup
-        run: npm install
+        run: npm install && npm run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         env:
           FIREBASE_CLI_EXPERIMENTS: webframeworks
-          PUBLIC_FIREBASE_CONFIG: ${{ secrets.FIREBASE_CONFIG }}
-          PUBLIC_GOOGLE_MAPS_API_KEY: ${{ secrets.GOOGLE_MAPS_API_KEY }}
         with:
           channelId: ${{ env.CHANNEL }}
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_SVKCL_D7EB1 }}
