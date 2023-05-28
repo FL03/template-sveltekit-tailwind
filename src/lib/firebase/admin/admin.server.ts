@@ -1,5 +1,5 @@
 import { dev } from '$app/environment';
-import { applicationDefault, initializeApp, cert } from 'firebase-admin/app';
+import { applicationDefault, initializeApp } from 'firebase-admin/app';
 import { getAuth } from 'firebase-admin/auth';
 import { getFirestore } from 'firebase-admin/firestore';
 

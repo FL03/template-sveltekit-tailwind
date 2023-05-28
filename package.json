@@ -12,7 +12,8 @@
     "@popperjs/core": "latest",
     "classnames": "latest",
     "cookie": "latest",
-    "firebase-admin": "latest"
+    "firebase-admin": "latest",
+    "geofire-common": "latest"
   },
   "description": "A SvelteKit template with TailwindCSS, Flowbite, and Firebase",
   "devDependencies": {
@@ -39,7 +40,6 @@
     "flowbite-svelte": "latest",
     "flowbite-svelte-blocks": "latest",
     "flowbite-typography": "latest",
-    "geofire-common": "latest",
     "marked": "latest",
     "postcss": "latest",
     "prettier": "latest",
