@@ -9,10 +9,10 @@ const config = {
     extend: {}
   },
   plugins: [
-    require('flowbite/plugin'),
-    require('flowbite-typography'),
     require('@tailwindcss/forms'),
-    require('@tailwindcss/typography')
+    require('@tailwindcss/typography'),
+    require('flowbite/plugin'),
+    require('flowbite-typography')
   ]
 };
 

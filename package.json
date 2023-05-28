@@ -4,6 +4,9 @@
     "name": "FL03",
     "url": "https://github.com/FL03"
   },
+  "bugs": {
+    "url": "https://github.com/FL03/template-sveltekit-tailwind/issues"
+  },
   "categories": [],
   "dependencies": {
     "@popperjs/core": "latest",
@@ -50,14 +53,22 @@
     "vite": "beta"
   },
   "engines": {
-    "node": "18"
+    "node": "18",
+    "npm": ">=7.0.0"
   },
-  "keywords": [],
+  "keywords": [
+    "firebase",
+    "sveltekit",
+    "tailwind",
+    "template"
+  ],
   "license": "Apache-2.0",
-  "main": "build/index.js",
   "name": "@pzzld/template-sveltekit-tailwind",
   "readme": "https://github.com/FL03/template-sveltekit-tailwind/#README",
-  "repository": "https://github.com/FL03/template-sveltekit-tailwind",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/FL03/template-sveltekit-tailwind.git"
+  },
   "scripts": {
     "build": "vite build",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
@@ -66,7 +77,7 @@
     "lint": "prettier --plugin-search-dir . --check . && eslint .",
     "format": "prettier --plugin-search-dir . --write .",
     "preview": "vite preview --host --port 3000",
-    "dev:firebase": "concurrently --kill-others \"npm run dev\" \"npm run firebase:emulate\"",
+    "firebase:dev": "concurrently --kill-others \"npm run dev\" \"npm run firebase:emulate\"",
     "firebase:deploy": "firebase deploy --only hosting",
     "firebase:emulate": "firebase emulators:start --only auth,firestore",
     "node:start": "node ./build/index.js"

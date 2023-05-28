@@ -9,7 +9,6 @@ env:
   CHANNEL: live
   FIREBASE_PID: svkcl-d7eb1
   NODE_VERSION: 18
-  RUST_BACKTRACE: full
 
 on:
   push:
@@ -21,15 +20,10 @@ on:
     types: [firebase-deploy]
   workflow_dispatch:
 
-permissions:
-  contents: read
-  deployments: write
-  id-token: write
-  pages: write
+permissions: write-all
 
 jobs:
   publisher:
-    
     environment:
       name: production
       url: https://${{ env.FIREBASE_PID }}.firebaseapp.com

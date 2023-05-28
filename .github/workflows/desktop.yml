@@ -9,9 +9,9 @@ env:
 
 on:
   release:
-    types: [ published ]
+    types: [published]
   repository_dispatch:
-    types: [ desktop-deploy ]
+    types: [desktop-deploy]
   workflow_dispatch:
 
 permissions: write-all
@@ -43,6 +43,8 @@ jobs:
         uses: tauri-apps/tauri-action@v0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLIC_FIREBASE_CONFIG: ${{ secrets.FIREBASE_CONFIG }}
+          PUBLIC_GOOGLE_MAPS_API_KEY: ${{ secrets.GOOGLE_MAPS_API_KEY }}
         with:
           tagName: v__VERSION__
           releaseName: ${{ github.event.repository.name }} v__VERSION__

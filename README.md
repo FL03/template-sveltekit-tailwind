@@ -1,5 +1,7 @@
 # template-sveltekit-tailwind
 
+[![Firebase](https://github.com/FL03/template-sveltekit-tailwind/actions/workflows/firebase.yml/badge.svg)](https://github.com/FL03/template-sveltekit-tailwind/actions/workflows/firebase.yml)
+
 [![Desktop](https://github.com/FL03/template-sveltekit-tailwind/actions/workflows/desktop.yml/badge.svg)](https://github.com/FL03/template-sveltekit-tailwind/actions/workflows/desktop.yml)
 [![Docker](https://github.com/FL03/template-sveltekit-tailwind/actions/workflows/docker.yml/badge.svg)](https://github.com/FL03/template-sveltekit-tailwind/actions/workflows/docker.yml)
 [![npm](https://github.com/FL03/template-sveltekit-tailwind/actions/workflows/npm.yml/badge.svg)](https://github.com/FL03/template-sveltekit-tailwind/actions/workflows/npm.yml)

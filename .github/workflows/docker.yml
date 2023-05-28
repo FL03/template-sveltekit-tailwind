@@ -20,7 +20,7 @@ jobs:
         with:
           buildargs: GOOGLE_APPLICATION_CREDENTIALS,PUBLIC_FIREBASE_CONFIG,PUBLIC_GOOGLE_MAPS_API_KEY
           context: .
-          dockerfile: Dockerfile
+          dockerfile: .docker/Dockerfile
           name: ${{ env.BASENAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
           snapshot: true
